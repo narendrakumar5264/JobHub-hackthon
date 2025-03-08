@@ -143,46 +143,46 @@ export default function Search() {
     <div className='flex flex-col gap-2 md:mt-[20px]'>
       <div className='flex gap-2'>
         <input type='checkbox' id='all' className='w-5' onChange={handleChange} checked={sidebardata.type === 'all'} />
-        <span>Rent & Sale</span>
+        <span>Part Time</span>
       </div>
       <div className='flex gap-2'>
         <input type='checkbox' id='rent' className='w-5' onChange={handleChange} checked={sidebardata.type === 'rent'} />
-        <span>Rent</span>
+        <span>Interenships</span>
       </div>
       <div className='flex gap-2'>
         <input type='checkbox' id='sale' className='w-5' onChange={handleChange} checked={sidebardata.type === 'sale'} />
-        <span>Sale</span>
+        <span>full time</span>
       </div>
-      <div className='flex gap-2'>
-        <input type='checkbox' id='offer' className='w-5' onChange={handleChange} checked={sidebardata.offer} />
-        <span>Offer</span>
-      </div>
+     
     </div>
 
     <div className='flex flex-wrap items-center gap-2 mt-4'>
-      <label className='font-semibold'>Amenities:</label>
+    
       <div className='flex gap-2'>
         <input type='checkbox' id='parking' className='w-5' onChange={handleChange} checked={sidebardata.parking} />
-        <span>Parking</span>
+        <span>Remote</span>
       </div>
       <div className='flex gap-2'>
         <input type='checkbox' id='furnished' className='w-5' onChange={handleChange} checked={sidebardata.furnished} />
-        <span>Furnished</span>
+        <span>On site</span>
       </div>
     </div>
 
     <div className='flex items-center gap-2 mt-8'>
-      <label className='font-semibold'>Sort:</label>
+      <label className='font-semibold'>Role:</label>
       <select
         onChange={handleChange}
         defaultValue={'created_at_desc'}
         id='sort_order'
         className='border rounded-lg p-3'
       >
-        <option value='regularPrice_desc'>Price high to low</option>
-        <option value='regularPrice_asc'>Price low to high</option>
-        <option value='createdAt_desc'>Latest</option>
-        <option value='createdAt_asc'>Oldest</option>
+        <option value='regularPrice_desc'>Software Developer</option>\
+        <option value='regularPrice_desc'>Full Stack Developer</option>
+        <option value='regularPrice_desc'>BackEnd Developer</option>
+        <option value='regularPrice_desc'>Ui/Ux Designer</option>
+        <option value='regularPrice_asc'>Front End Developer</option>
+        <option value='createdAt_desc'>Data Science</option>
+        <option value='createdAt_asc'>DevOps </option>
       </select>
     </div>
 
@@ -226,7 +226,7 @@ export default function Search() {
           <div className=' mt-0'>
           <h1 className="text-2xl md:text-4xl font-bold border-b-4 border-gray-300 p-2
            text-gray-800 mt-2 shadow-sm">
-  Properties in  <span className="text-blue-600">{sidebardata.city}</span> :
+  Jobs in  <span className="text-blue-600">{sidebardata.city}</span> :
 </h1>
 
 

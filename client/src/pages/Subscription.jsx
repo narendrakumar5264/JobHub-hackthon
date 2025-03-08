@@ -43,10 +43,10 @@ const Subscription = () => {
           {/* Left Column - Plan Selection */}
           <div className="w-full md:w-1/2 p-8 bg-gradient-to-br from-blue-50 to-indigo-100">
             <h2 className="text-3xl font-bold mb-6 text-indigo-800">
-              Premium Real Estate Insights
+              Premium 
             </h2>
             <p className="text-gray-600 mb-8">
-              Choose the perfect plan and unlock exclusive property listings, market trends, and expert advice tailored to your investment goals.
+              Choose the perfect Job and unlock Opportunities
             </p>
 
             {/* Pricing Tiers */}

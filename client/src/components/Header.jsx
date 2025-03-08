@@ -56,7 +56,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold md:ml-10 text-blue-600">
-          <span className='text-slate-800'>NK</span>Estate
+          <span className='text-slate-800'>Job</span>Hub
         </Link>
 
         {/* Centered Navigation Links */}
@@ -68,7 +68,13 @@ export default function Header() {
             About
           </Link>
           <Link to="/listing" className="text-gray-700 hover:text-blue-500 transition">
-            Listings
+             Companies
+          </Link>
+          <Link className="text-gray-700 hover:text-blue-500 transition">
+          Jobs
+          </Link>
+          <Link className="text-gray-700 hover:text-blue-500 transition">
+          Interenships
           </Link>
         </nav>
 
@@ -76,7 +82,7 @@ export default function Header() {
         <div className="flex items-center ml-20 md:mr-9 gap-9">
           <Link to="/create-listing">
             <button className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition">
-              Sell/Rent
+              Job/Internship
             </button>
           </Link>
 
