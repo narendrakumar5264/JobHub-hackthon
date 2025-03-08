@@ -18,7 +18,7 @@ function AppContent() {
 
   return (
     <div>
-      {/* Show Header only if the current path is not "/" */}
+    
       {location.pathname !== '/' && <Header />}
       <ScrollToTop />
       <Routes>
@@ -28,7 +28,7 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/listing/:listingId" element={<ListingPage />} />
         <Route path='/search' element={<Search />} />
-        {/* Private routes */}
+       
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />

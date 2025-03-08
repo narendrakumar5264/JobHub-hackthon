@@ -80,7 +80,7 @@ export default function Listings() {
       <div className="max-w-8xl mx-auto shadow-lg rounded-lg p-8 bg-white">
         <div className="mb-8 text-center">
           <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-6 font-semibold">
-            Manage your property listings with ease. Add, view, or delete your listings below.
+            Manage your Jobs listings with ease. Add, view, or delete your listings below.
           </p>
 
           {/* New Listing Section */}
