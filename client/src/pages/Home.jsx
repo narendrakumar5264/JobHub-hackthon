@@ -229,32 +229,33 @@ const showcompany = [
       </div>
 
       
-      <div className="relative py-20 bg-gradient-to-b from-white to-slate-50">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-16">
-      <div className="flex-1 space-y-6">
-        <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
-          Find your First and <span className="text-cyan-600">Dream</span> Job with ease
-        </h2>
-        <p className="text-lg text-slate-600 leading-relaxed">
+     <div className="relative py-20 bg-gradient-to-b from-white to-slate-50">
+  <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-16">
+    <div className="flex-1 space-y-6">
+      <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+        Take an <span className="text-cyan-600">AI-Based</span> Interview with ease
+      </h2>
+      <p className="text-lg text-slate-600 leading-relaxed">
         JobHub revolutionizes job searching with intelligent matching and seamless browsing.
-        Experience career opportunities reimagined through our curated collection of exceptional job listings</p>
-        <Link
-          to="/search"
-          className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold group transition-colors"
-        >
-          Let's get started
-          <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </div>
-      <div className="flex-1">
-        <img
-          src={yourGif}
-          alt="Property visualization"
-          className="w-full max-w-xl rounded-2xl   transform hover:scale-[1.02] transition-transform"
-        />
-      </div>
+        Experience career opportunities reimagined through our curated collection of exceptional job listings.
+      </p>
+      <Link
+        to="/Ai_interview"
+        className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold group transition-colors"
+      >
+        Let's get started
+        <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </div>
+    <div className="flex-1">
+      <img
+        src={yourGif}
+        alt="Property visualization"
+        className="w-full max-w-xl rounded-2xl transform hover:scale-[1.02] transition-transform"
+      />
     </div>
   </div>
+</div>
 
   
     
