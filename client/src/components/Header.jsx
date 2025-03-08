@@ -68,7 +68,12 @@ export default function Header() {
             About
           </Link>
           <Link to="/listing" className="text-gray-700 hover:text-blue-500 transition">
-            Listings
+            company
+          </Link>
+          <Link>
+          jobs
+          </Link>
+          <Link>
           </Link>
         </nav>
 
