@@ -13,7 +13,7 @@ import { FaUserFriends, FaHome } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import yourGif from '../assets/gif.gif';
 import { FaBuilding } from "react-icons/fa";
-
+import Ai_interview from '../components/Ai_interview.jsx';
 import samsung   from '../assets/samsung.jpeg';
 import google   from '../assets/google.jpeg';
 import meta  from '../assets/meta.jpeg';
@@ -34,9 +34,9 @@ export default function Home() {
   const navigate = useNavigate();
 
 
-  const [visibleCompany, setvisibleCompany] = useState(4); // Show only 4 Company initially
+  const [visibleCompany, setvisibleCompany] = useState(4); 
 
-  // Function to toggle between "Show More" and "Show Less"
+  
   const handleShowMore = () => {
     if (visibleCompany === 4) {
       setvisibleCompany(showcompany.length); // Show all Company
@@ -124,7 +124,7 @@ const showcompany = [
     const value = e.target.value;
     setSearchTerm(value);
 
-    // Filter Company based on search term
+    
     if (value.length > 0) {
       const filteredCompanies = Company.filter((company) =>
         company.toLowerCase().includes(value.toLowerCase())
@@ -229,31 +229,33 @@ const showcompany = [
 
       
       <div className="relative py-20 bg-gradient-to-b from-white to-slate-50">
-    <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-16">
-      <div className="flex-1 space-y-6">
-        <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
-          Find your First and <span className="text-cyan-600">Dream</span> Job with ease
-        </h2>
-        <p className="text-lg text-slate-600 leading-relaxed">
+  <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-16">
+    <div className="flex-1 space-y-6">
+      <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+        Take an <span className="text-cyan-600">AI-Based</span> Interview with ease
+      </h2>
+      <p className="text-lg text-slate-600 leading-relaxed">
         JobHub revolutionizes job searching with intelligent matching and seamless browsing.
-        Experience career opportunities reimagined through our curated collection of exceptional job listings</p>
-        <Link
-          to="/search"
-          className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold group transition-colors"
-        >
-          Let's get started
-          <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </div>
-      <div className="flex-1">
-        <img
-          src={yourGif}
-          alt="Property visualization"
-          className="w-full max-w-xl rounded-2xl   transform hover:scale-[1.02] transition-transform"
-        />
-      </div>
+        Experience career opportunities reimagined through our curated collection of exceptional job listings.
+      </p>
+      <Link
+        to="/Ai_interview"
+        className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold group transition-colors"
+      >
+        Let's get started
+        <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </div>
+    <div className="flex-1">
+      <img
+        src={yourGif}
+        alt="Property visualization"
+        className="w-full max-w-xl rounded-2xl transform hover:scale-[1.02] transition-transform"
+      />
     </div>
   </div>
+</div>
+
 
   
     
