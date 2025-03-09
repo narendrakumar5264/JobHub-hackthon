@@ -99,11 +99,11 @@ export default function ListingItem() {
       <p className="text-4xl font-bold text-purple-600">{days} Days</p>
       <p className="text-gray-500 text-sm">DAYS</p>
     </div>
-            <Link to={`/listing/${listing._id}`} className="mt-3">
+{/*             <Link to={`/listing/${listing._id}`} className="mt-3">
               <button className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-all">
                 Apply Now
               </button>
-            </Link>
+            </Link> */}
           </div>
         </motion.div>
       ))}
