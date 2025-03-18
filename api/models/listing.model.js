@@ -1,8 +1,28 @@
 import mongoose from 'mongoose';
 
-const listingSchema = new mongoose.Schema(
+const listingCompany = new mongoose.Schema(
   {
-    name: {
+    recruiterName: {
+      type: String,
+      required: true,
+    },
+    companyName: {
+      type: String,
+      required: true,
+    },
+    jobTitle: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    salary: {
+      type: String,
+      required: true,
+    },
+    jobType: {
       type: String,
       required: true,
     },
@@ -10,67 +30,26 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    address: {
+    experienceRequired: {
       type: String,
       required: true,
     },
-    regularPrice: {
-      type: Number,
-      required: true,
-    },
-    discountPrice: {
-      type: Number,
-      required: true,
-    },
-    bathrooms: {
-      type: Number,
-      required: true,
-    },
-    bedrooms: {
-      type: Number,
-      required: true,
-    },
-    furnished: {
-      type: Boolean,
-      required: true,
-    },
-    parking: {
-      type: Boolean,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    offer: {
-      type: Boolean,
-      required: true,
-    },
-    imageUrls: {
-      type: Array,
-      required: true,
-    },
-    userRef: {
-      type: String,
-      required: true,
-    },
-    ownerName: {
-      type: String,
-      required: true,
-    },
-    mobileNumber: {
-      type: String,
+    skillsRequired: {
+      type: Array, // Assuming multiple skills can be selected
       required: true,
     },
     city: {
       type: String,
       required: true,
     },
-
+    address: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const Listing = mongoose.model('Listing', listingSchema);
+const Listing = mongoose.model('Listing', listingCompany);
 
 export default Listing;

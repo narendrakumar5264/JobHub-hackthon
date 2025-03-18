@@ -97,12 +97,12 @@ const [percentage, setPercentage] = useState(0);
     recognition.interimResults = true;
 
     recognition.onresult = (event) => {
-      let interimTranscript = "";
+      // let interimTranscript = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         if (event.results[i].isFinal) {
           setTranscript((prev) => prev + event.results[i][0].transcript + " ");
         } else {
-          interimTranscript += event.results[i][0].transcript;
+          // interimTranscript += event.results[i][0].transcript;
         }
       }
     };

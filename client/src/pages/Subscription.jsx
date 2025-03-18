@@ -37,103 +37,42 @@ const Subscription = () => {
   };
 
   return (
-    <div className=" mt-16 flex items-center justify-center bg-gradient-to-r ">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-6xl w-full mx-4 overflow-hidden">
+    
+    <div className="mt-16 flex items-center justify-center px-4 md:px-0">
+      <div className="bg-white rounded-3xl shadow-xl max-w-5xl w-full overflow-hidden transform hover:scale-105 transition-transform duration-300">
         <div className="flex flex-col md:flex-row">
           {/* Left Column - Plan Selection */}
           <div className="w-full md:w-1/2 p-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <h2 className="text-3xl font-bold mb-6 text-indigo-800">
-              Premium 
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Choose the perfect Job and unlock Opportunities
-            </p>
+            <h2 className="text-3xl font-extrabold text-indigo-800 mb-4">JobHub Premium</h2>
+            <p className="text-gray-600 mb-6">Choose the perfect plan and unlock job opportunities.</p>
 
-            {/* Pricing Tiers */}
+            {/* Pricing Plans */}
             <div className="space-y-4">
-              {/* Basic Plan */}
-              <div
-                className={`p-6 rounded-xl border-2 ${
-                  selectedPlan === 'Basic' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
-                } cursor-pointer transition-all duration-300 hover:shadow-lg`}
-                onClick={() => handlePlanChange('Basic')}
-              >
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-gray-800">Basic</h3>
-                  <p className="text-xl font-bold text-blue-600">$9.99/mo</p>
+              {["Basic", "Advanced", "Ninja"].map((plan, index) => (
+                <div
+                  key={plan}
+                  className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                    selectedPlan === plan ? "border-indigo-500 bg-indigo-100" : "border-gray-200 bg-white"
+                  }`}
+                  onClick={() => handlePlanChange(plan)}
+                >
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl font-bold text-gray-800">{plan}</h3>
+                    <p className="text-xl font-bold text-indigo-600">${index *10 + 9.9}/mo</p>
+                  </div>
+                  <p className="text-gray-600 mb-3">{plan === "Basic" ? "For beginners" : plan === "Advanced" ? "For professionals" : "For experts"}</p>
+                  <ul className="text-gray-600 space-y-2">
+                    <li className="flex items-center">
+                      <FaCheckCircle size={16} className="text-blue-500 mr-2" />
+                      Access to exclusive job listings
+                    </li>
+                    <li className="flex items-center">
+                      <FaCheckCircle size={16} className="text-blue-500 mr-2" />
+                      Priority application processing
+                    </li>
+                  </ul>
                 </div>
-                <p className="text-gray-600 mb-4">Perfect for beginners</p>
-                <ul className="text-gray-600">
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-blue-500 mr-2" />
-                    Access to basic listings
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-blue-500 mr-2" />
-                    Weekly market updates
-                  </li>
-                  <li className="mb-2 flex items-center opacity-50">
-                    <FaInfo size={16} className="text-gray-400 mr-2" />
-                    No premium insights
-                  </li>
-                </ul>
-              </div>
-
-              {/* Advanced Plan */}
-              <div
-                className={`p-6 rounded-xl border-2 ${
-                  selectedPlan === 'Advanced' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 bg-white'
-                } cursor-pointer transition-all duration-300 hover:shadow-lg`}
-                onClick={() => handlePlanChange('Advanced')}
-              >
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-gray-800">Advanced</h3>
-                  <p className="text-xl font-bold text-purple-600">$19.99/mo</p>
-                </div>
-                <p className="text-gray-600 mb-4">For serious investors</p>
-                <ul className="text-gray-600">
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-purple-500 mr-2" />
-                    Access to premium listings
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-purple-500 mr-2" />
-                    Daily market updates
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-purple-500 mr-2" />
-                    Expert advice
-                  </li>
-                </ul>
-              </div>
-
-              {/* Ninja Plan */}
-              <div
-                className={`p-6 rounded-xl border-2 ${
-                  selectedPlan === 'Ninja' ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
-                } cursor-pointer transition-all duration-300 hover:shadow-lg`}
-                onClick={() => handlePlanChange('Ninja')}
-              >
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-gray-800">Ninja</h3>
-                  <p className="text-xl font-bold text-green-600">$29.99/mo</p>
-                </div>
-                <p className="text-gray-600 mb-4">For real estate pros</p>
-                <ul className="text-gray-600">
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-green-500 mr-2" />
-                    Access to all listings
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-green-500 mr-2" />
-                    Real-time market updates
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <FaCheckCircle size={16} className="text-green-500 mr-2" />
-                    Personalized expert advice
-                  </li>
-                </ul>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -141,127 +80,67 @@ const Subscription = () => {
           <div className="w-full md:w-1/2 p-8 bg-white">
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Complete Your Subscription</h3>
             
-            <form onSubmit={handleSubmit}>
-              {/* Email Section */}
-              <div className="mb-6">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                  Email Address
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <CiMail size={18} className="text-gray-400" />
-                  </div>
-                  <input
-                    className="pl-10 shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Email Field */}
+              <div>
+                <label className="block text-gray-700 font-bold mb-2">Email Address</label>
+                <input
+                  className="shadow border rounded-lg w-full py-3 px-4 text-gray-700 focus:ring-2 focus:ring-indigo-500"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </div>
 
-              {/* Credit Card Section */}
-              <div className="mb-6">
+              {/* Payment Details */}
+              <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">Payment Details</h3>
                 <div className="space-y-4">
-                  <div>
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cardNumber">
-                      Card Number
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <CiCreditCard1 size={18} className="text-gray-400" />
-                      </div>
-                      <input
-                        className="pl-10 shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        id="cardNumber"
-                        type="text"
-                        placeholder="1234 5678 9012 3456"
-                        name="cardNumber"
-                        value={cardDetails.cardNumber}
-                        onChange={handleCardChange}
-                        required
-                      />
-                    </div>
-                  </div>
+                  <input
+                    className="shadow border rounded-lg w-full py-3 px-4 text-gray-700 focus:ring-2 focus:ring-indigo-500"
+                    type="text"
+                    placeholder="Card Number"
+                    name="cardNumber"
+                    value={cardDetails.cardNumber}
+                    onChange={handleCardChange}
+                    required
+                  />
                   <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="expiryDate">
-                        Expiry Date
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <CiCalendar size={18} className="text-gray-400" />
-                        </div>
-                        <input
-                          className="pl-10 shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                          id="expiryDate"
-                          type="text"
-                          placeholder="MM/YY"
-                          name="expiryDate"
-                          value={cardDetails.expiryDate}
-                          onChange={handleCardChange}
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cvv">
-                        CVV
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FaUnlockKeyhole size={18} className="text-gray-400" />
-                        </div>
-                        <input
-                          className="pl-10 shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                          id="cvv"
-                          type="text"
-                          placeholder="123"
-                          name="cvv"
-                          value={cardDetails.cvv}
-                          onChange={handleCardChange}
-                          required
-                        />
-                      </div>
-                    </div>
+                    <input
+                      className="shadow border rounded-lg w-full py-3 px-4 text-gray-700 focus:ring-2 focus:ring-indigo-500"
+                      type="text"
+                      placeholder="MM/YY"
+                      name="expiryDate"
+                      value={cardDetails.expiryDate}
+                      onChange={handleCardChange}
+                      required
+                    />
+                    <input
+                      className="shadow border rounded-lg w-full py-3 px-4 text-gray-700 focus:ring-2 focus:ring-indigo-500"
+                      type="text"
+                      placeholder="CVV"
+                      name="cvv"
+                      value={cardDetails.cvv}
+                      onChange={handleCardChange}
+                      required
+                    />
                   </div>
                 </div>
               </div>
-
-              {/* UPI Payment Section */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">Quick Payment Options</h3>
-                <div className="flex items-center space-x-4 justify-center">
-                  <button type="button" className="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-300">
-                    <CiMail size={28} className="text-red-500 mb-2" />
-                    <span className="text-sm text-gray-600">Google Pay</span>
-                  </button>
-                  <button type="button" className="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-300">
-                    <CiCreditCard1 size={28} className="text-purple-500 mb-2" />
-                    <span className="text-sm text-gray-600">PhonePe</span>
-                  </button>
-                </div>
-              </div>
-
+              
               {/* Submit Button */}
-              <div className="flex items-center justify-center">
-                <button
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300 w-full"
-                  type="submit"
-                >
-                  {`Subscribe to ${selectedPlan} • $${selectedPlan === 'Basic' ? '9.99' : selectedPlan === 'Advanced' ? '19.99' : '29.99'}/month`}
-                </button>
-              </div>
+              <button
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300 w-full"
+                type="submit"
+              >
+                Subscribe to {selectedPlan} • ${selectedPlan === "Basic" ? "9.99" : selectedPlan === "Advanced" ? "19.99" : "29.99"}/month
+              </button>
             </form>
-
-            {/* Additional Text */}
-            <p className="text-gray-500 text-sm mt-6 text-center flex items-center justify-center">
-              <FaInfo size={16} className="mr-2" />
-              Your subscription will automatically renew. Cancel anytime.
+            
+            <p className="text-gray-500 text-sm mt-4 text-center">
+              <FaInfo size={16} className="inline-block mr-1" /> Your subscription will auto-renew. Cancel anytime.
             </p>
           </div>
         </div>
