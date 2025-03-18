@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import {
   FaBars,
   FaUserEdit,
@@ -97,9 +97,18 @@ export default function Header() {
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
                   <ul className="text-gray-700">
                     <li className="px-4 py-2 hover:bg-gray-100 flex items-center gap-2">
-                      <FaUserEdit className="text-blue-500" />
-                      <Link to="/profile">Edit Profile</Link>
+                    <img
+                onClick={toggleMenu}
+                className="rounded-full h-6 w-6 object-cover cursor-pointer border-1 border-blue-500 hover:border-blue-700"
+                src={currentUser.avatar}
+                alt="profile"
+              />
+                      <Link to="/profile">Profile</Link>
                     </li>
+                    <li className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 transition">
+                        <FaInfoCircle className="text-blue-500" />
+                        <Link to="/Resume">Resume Analysis</Link>
+                      </li>
                     <li className="px-4 py-2 hover:bg-gray-100 flex items-center gap-2">
                       <FaListAlt className="text-blue-500" />
                       <Link to="/listing">My Listings</Link>

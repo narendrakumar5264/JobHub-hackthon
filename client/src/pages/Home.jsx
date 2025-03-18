@@ -239,7 +239,7 @@ const showcompany = [
         Take an <span className="text-cyan-600">AI-Based</span> Interview with ease
       </h2>
       <p className="text-lg text-slate-600 leading-relaxed">
-        JobHub revolutionizes job searching with intelligent matching and seamless browsing.
+       JobHub revolutionizes job searching with intelligent matching and seamless browsing.
         Experience career opportunities reimagined through our curated collection of exceptional job listings.
       </p>
       <Link
@@ -259,7 +259,6 @@ const showcompany = [
     </div>
   </div>
 </div>
-
 
   
     
