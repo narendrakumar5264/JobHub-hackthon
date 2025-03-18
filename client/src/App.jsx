@@ -14,6 +14,7 @@ import Search from './pages/Search';
 import ScrollToTop from './components/ScrollToTop';
 import Subscription from './pages/Subscription';
 import Ai_interview from './components/Ai_interview';
+import Resume from './components/Resume';
 function AppContent() {
   const location = useLocation(); // Now it's inside BrowserRouter's context
 
@@ -33,6 +34,7 @@ function AppContent() {
        
         <Route element={<PrivateRoute />}>
            <Route path='/Ai_interview' element={<Ai_interview />} />
+           <Route path='/Resume' element={<Resume />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/update-listing/:listingId" element={<UpdateListing />} />
