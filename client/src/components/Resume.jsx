@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import yourGif from '../assets/gif3.gif';
@@ -162,3 +163,4 @@ const Resume = () => {
 };
 
 export default Resume;
+
