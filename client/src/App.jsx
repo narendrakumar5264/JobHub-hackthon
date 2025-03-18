@@ -29,8 +29,8 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/listing/:listingId" element={<ListingPage />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/Ai_interview' element={<Ai_interview />} />
         <Route element={<PrivateRoute />}>
+        <Route path='/Ai_interview' element={<Ai_interview />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/update-listing/:listingId" element={<UpdateListing />} />

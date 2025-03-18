@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import { IoFilter } from "react-icons/io5";
+
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
@@ -9,16 +9,15 @@ import ListingItem from '../components/ListingItem.jsx';
 import Header from '../components/Header.jsx';
 import background from '../assets/Companies.jpg';
 import about from '../assets/boy.jpg';
-import { FaUserFriends, FaHome } from "react-icons/fa";
+
 import { FiArrowRight } from "react-icons/fi";
 import yourGif from '../assets/gif.gif';
-import { FaBuilding } from "react-icons/fa";
-<<<<<<< HEAD
-import Ai_interview from '../components/Ai_interview.jsx';
-=======
+
+
+
+
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
->>>>>>> 6671fbb1ccb182573b9d162600a46f1d70c25f1b
 import samsung   from '../assets/samsung.jpeg';
 import google   from '../assets/google.jpeg';
 import meta  from '../assets/meta.jpeg';

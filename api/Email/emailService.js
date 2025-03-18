@@ -13,9 +13,9 @@ const transporter = nodemailer.createTransport({
 // Function to send the welcome email
 export const sendWelcomeEmail = (email, username) => {
     const mailOptions = {
-      from: 'nkestate.nk@gmail.com',
+      from: 'Jobhub@gmail.com',
       to: email,
-      subject: 'Welcome to Our Real Estate Platform!',
+      subject: 'Welcome to Our JobHub Platform!',
       html: `
         <html>
           <head>
@@ -74,12 +74,12 @@ export const sendWelcomeEmail = (email, username) => {
               <div class="content">
                 <h2>Hello ${username},</h2>
                 <p>Thank you for signing up with us! We're excited to have you onboard.</p>
-                <p>Explore our platform and find your perfect property with ease. Our team is always here to assist you in your real estate journey.</p>
-                <a href="https://real-state-website-y2ru.onrender.com/" class="button">Start Exploring</a>
+                <p>Explore our platform and find your perfect Job/Intenship with ease. Our team is always here to assist you in your Job finding journey.</p>
+                <a href="https://jobhub-9sew.onrender.com/" class="button">Start Exploring</a>
               </div>
               <div class="footer">
                 <p>Best regards,</p>
-                <p><strong>NKEstate Team(Narendra Kumar)</strong></p>
+                <p><strong>TeamEagle(anis & narendra)</strong></p>
                 <p>Contact us: <a href="mailto:jangidnarendra858@gmail.com">jangidnarendra858@gmail.com</a></p>
               </div>
             </div>
