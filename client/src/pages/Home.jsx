@@ -409,148 +409,45 @@ const showcompany = [
     </div>
   )}
   </div> */}
- <div className="max-w-6xl mx-auto p-4 md:p-8 bg-[#1E3A5F] rounded-2xl shadow-xl">
+  <div className='max-w-1xl  md:mx-0 p-2 flex flex-col gap-4  md:grid ml-0 bg-[#205781]'>
   {rentListings && rentListings.length > 0 && (
-    <div className="text-center">
-      {/* Title */}
-      <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-wide">
-        🔥 Recent Job Openings
-      </h2>
-
-      {/* Job Listings Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {rentListings.slice(0, 3).map((listing) => (
-          <div
-            key={listing._id}
-            className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-2xl"
-          >
-            {/* Job Image */}
-            <div className="flex justify-center mb-4">
-              <img
-                src={listing.imageUrls[0] || "https://via.placeholder.com/100"}
-                alt="Company Logo"
-                className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg border border-gray-200 shadow-sm"
-              />
-            </div>
-
-            {/* Job Title */}
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white text-center capitalize">
-              {listing.jobTitle || "Job Title"}
-            </h3>
-
-            {/* Job Location */}
-            <p className="text-gray-600 dark:text-gray-300 text-sm text-center mt-2 flex items-center justify-center gap-1">
-              📍 {listing.location}
-            </p>
-
-            {/* Job Description */}
-            <p className="text-gray-700 dark:text-gray-400 text-sm mt-3 text-center line-clamp-2">
-              {listing.description?.substring(0, 80) || "No description available"}...
-            </p>
-
-            {/* Salary */}
-            <p className="text-lg md:text-xl font-bold text-blue-600 dark:text-blue-400 mt-3 text-center">
-              ₹{listing.salary}
-            </p>
-
-            {/* Job Type */}
-            <p className="text-gray-500 dark:text-gray-300 text-sm text-center mt-1">
-              {listing.jobType}
-            </p>
-
-            {/* Apply Button */}
-            <div className="mt-4 flex justify-center">
-              <button className="bg-blue-600 text-white text-sm font-medium px-4 py-2 md:px-5 md:py-2.5 rounded-md transition hover:bg-blue-700">
-                Apply Now
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Browse More Companies - Styled Button */}
-      <div className="mt-8 flex justify-center">
-        <button className="bg-gray-700 text-white text-sm font-medium px-6 py-3 rounded-md transition hover:bg-gray-800">
-          Browse More Companies →
-        </button>
-      </div>
-    </div>
-  )}
-</div>
-
-
-
-<div className="max-w-6xl mx-auto mt-8 p-6 md:p-12 bg-[#F4E5D7] rounded-2xl shadow-xl">
-  {saleListings && saleListings.length > 0 && (
-    <div className="text-center">
-      {/* Title */}
-      <h2 className="text-3xl font-bold text-gray-800 mb-4 tracking-wide">
-        🚀 Latest Job Listings
-      </h2>
-
-      {/* Scrollable Job Listings */}
-      <div className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap mt-8 pb-4 scrollbar-hide">
-        {saleListings.slice(0, 3).map((listing) => (
-          <div
-            key={listing._id}
-            className="snap-center bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-80 transition transform hover:scale-105 hover:shadow-2xl"
-          >
-            {/* Job Image */}
-            <div className="flex justify-center mb-4">
-              <img
-                src={listing.imageUrls[0] || "https://via.placeholder.com/100"}
-                alt="Company Logo"
-                className="w-20 h-20 object-cover rounded-lg border border-gray-200 shadow-sm"
-              />
-            </div>
-
-            {/* Job Title */}
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white text-center">
-              {listing.jobTitle || "Job Title"}
-            </h3>
-
-            {/* Job Location */}
-            <p className="text-gray-600 dark:text-gray-300 text-sm text-center mt-2 flex items-center justify-center gap-1">
-              📍 {listing.location}
-            </p>
-
-            {/* Job Description */}
-            <p className="text-gray-700 dark:text-gray-400 text-sm mt-3 text-center line-clamp-2">
-              {listing.description?.substring(0, 80) || "No description available"}...
-            </p>
-
-            {/* Salary */}
-            <p className="text-xl font-bold text-green-600 dark:text-green-400 mt-3 text-center">
-              ₹{listing.salary}
-            </p>
-
-            {/* Job Type */}
-            <p className="text-gray-500 dark:text-gray-300 text-sm text-center mt-1">
-              {listing.jobType}
-            </p>
-
-            {/* Apply Button */}
-            <div className="mt-4 flex justify-center">
-              <button className="bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-md transition hover:bg-green-700">
-                Apply Now
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* "Find More Jobs" Button at the End */}
-      <div className="mt-6 flex justify-center">
-        <Link to={"/search?type=sale"}>
-          <button className="bg-blue-700 text-white text-sm font-medium px-5 py-2 rounded-md transition hover:bg-blue-800">
-            Find More Jobs →
-          </button>
+    <div className='mx-5 md:mx-16 my-10 '>
+      <div className='my-2'>
+        <h2 className='text-3xl font-semibold text-black-600'>Recent  jobs</h2>
+        <Link className='text-sm text-black-500 hover:underline' to={'/search?type=rent'}>
+          Show more Companies for jobs
         </Link>
       </div>
+      <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap'>
+        {rentListings.slice(0,3).map((listing) => (
+          <div key={listing._id} className='snap-center'>
+            <ListingItem listing={listing} />
+          </div>
+        ))}
+      </div>
     </div>
   )}
-</div>
+  </div>
 
+<div className='max-w-1xl  md:mx-0 p-2 flex flex-col gap-8  md:grid ml-0 bg-brown-300'>
+  {saleListings && saleListings.length > 0 && (
+    <div className=' mx-5 md:mx-16 my-10'>
+      <div className=''>
+        <h2 className='text-2xl font-semibold text-slate-600'>Latest Job Listingse</h2>
+        <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>
+        Find More Jobs
+        </Link>
+      </div>
+      <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap'>
+        {saleListings.slice(0,3).map((listing) => (
+          <div key={listing._id} className='snap-center'>
+            <ListingItem listing={listing} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+  </div>
 
 
 
