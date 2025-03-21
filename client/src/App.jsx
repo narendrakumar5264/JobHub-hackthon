@@ -14,6 +14,7 @@ import Search from './pages/Search';
 import ScrollToTop from './components/ScrollToTop';
 import Subscription from './pages/Subscription';
 import Ai_interview from './components/Ai_interview';
+import Recuirtment from './pages/Recuirtment';
 
 import Resume from './components/Resume';
 function AppContent() {
@@ -35,6 +36,7 @@ function AppContent() {
         <Route element={<PrivateRoute />}>
         <Route path='/Ai_interview' element={<Ai_interview />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/Recuirtment" element={<Recuirtment />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/Resume" element={<Resume />} />
           <Route path="/Ai_interview" element={<Ai_interview />} />

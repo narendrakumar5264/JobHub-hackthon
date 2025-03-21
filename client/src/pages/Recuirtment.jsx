@@ -1,0 +1,169 @@
+import React, { useState } from "react";
+import { FaUpload, FaCheckCircle } from "react-icons/fa";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
+const Recruitment = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    experience: "",
+    skills: "",
+    resume: null,
+  });
+  const [resumeName, setResumeName] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData({ ...formData, resume: files[0] });
+      setResumeName(files[0].name);
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState("10:00");
+  const [scheduled, setScheduled] = useState(false);
+
+  const handleSchedule = () => {
+    setScheduled(true);
+  };
+
+  const validateForm = () => {
+    const { name, email, phone, experience, skills, resume } = formData;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+    const experienceRegex = /^[0-9]+$/;
+
+    if (!name || !email || !phone || !experience || !skills || !resume) {
+      alert("Please fill in all fields.");
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    if (!phoneRegex.test(phone)) {
+      alert("Phone number must be 10 digits.");
+      return false;
+    }
+    if (!experienceRegex.test(experience)) {
+      alert("Experience must be a valid number.");
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setShowPopup(true);
+      setIsSubmitting(false);
+      setFormData({ name: "", email: "", phone: "", experience: "", skills: "", resume: null });
+      setResumeName("");
+    }, 2000);
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-2xl font-bold text-center mb-6">Job Application Form</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Personal Details */}
+        <div>
+          <label htmlFor="name" className="block font-semibold">Full Name</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full p-2 border rounded" />
+        </div>
+        <div>
+          <label htmlFor="email" className="block font-semibold">Email</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full p-2 border rounded" />
+        </div>
+        <div>
+          <label htmlFor="phone" className="block font-semibold">Phone</label>
+          <input type="text" name="phone" value={formData.phone} onChange={handleChange} required className="w-full p-2 border rounded" />
+        </div>
+
+        {/* Professional Details */}
+        <div>
+          <label htmlFor="experience" className="block font-semibold">Years of Experience</label>
+          <input type="text" name="experience" value={formData.experience} onChange={handleChange} required className="w-full p-2 border rounded" />
+        </div>
+        <div>
+          <label htmlFor="skills" className="block font-semibold">Skills</label>
+          <input type="text" name="skills" value={formData.skills} onChange={handleChange} required className="w-full p-2 border rounded" />
+        </div>
+
+        {/* Resume Upload */}
+        <div>
+          <label htmlFor="resume" className="block font-semibold">Upload Resume</label>
+          <div className="flex items-center space-x-2">
+            <input type="file" name="resume" onChange={handleChange} required className="w-full p-2 border rounded" />
+            <FaUpload className="text-gray-500" />
+          </div>
+          {resumeName && <p className="text-sm text-green-600 mt-1">Selected File: {resumeName}</p>}
+        </div>
+
+        <button type="submit" disabled={isSubmitting} className="w-full bg-blue-600 text-white p-2 rounded">{isSubmitting ? "Submitting..." : "Apply Now"}</button>
+      </form>
+
+      {/* Popup */}
+      {showPopup && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-white p-6 rounded-lg shadow-lg text-center animate-fade-in w-96">
+          <FaCheckCircle className="text-green-500 text-4xl mx-auto mb-3" />
+          <h3 className="text-xl font-semibold text-gray-800">Application Submitted!</h3>
+          <p className="text-gray-600 mt-2">Increase your chances by taking a small test with AI.</p>
+          {!scheduled ? (
+            <div className="mt-4">
+              <label className="block text-gray-700 font-semibold mb-1">Select Date:</label>
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+                className="border p-2 rounded w-full"
+                minDate={new Date()}
+              />
+              <label className="block text-gray-700 font-semibold mt-3 mb-1">Select Time:</label>
+              <TimePicker
+                onChange={setSelectedTime}
+                value={selectedTime}
+                className="border p-2 rounded w-full"
+              />
+              <button
+                className="mt-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition"
+                onClick={handleSchedule}
+              >
+                Confirm Schedule
+              </button>
+            </div>
+          ) : (
+            <p className="text-red-800 font-semibold mt-4">Test scheduled on
+             {selectedDate.toDateString()} at  &nbsp; {selectedTime} 
+             &nbsp;
+             <span className="text-green-600">You will reacieve a Email with a Link in it half a hour before this</span>
+             </p>
+             
+            
+          )}
+          <button
+            className="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition"
+            onClick={() => setShowPopup(false)}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+        )}
+    </div>
+  );
+};
+
+export default Recruitment;
