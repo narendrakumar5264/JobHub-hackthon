@@ -65,7 +65,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8">
           <Link to="/" className="text-gray-700 dark:text-gray-200 text-xl hover:text-blue-500 transition">Home</Link>
           <Link to="/about" className="text-gray-700 dark:text-gray-200 text-xl hover:text-blue-500 transition">About</Link>
-          <Link to="/listing" className="text-gray-700 dark:text-gray-200 text-xl hover:text-blue-500 transition">Companies</Link>
+          <Link to="/listing" className="text-gray-700 dark:text-gray-200 text-xl hover:text-blue-500 transition">My Listings</Link>
           <Link to="/search" className="text-gray-700 dark:text-gray-200 text-xl hover:text-blue-500 transition">Jobs</Link>
 
           {/* Theme Toggle Button */}
