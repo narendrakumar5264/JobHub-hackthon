@@ -157,8 +157,8 @@ const [percentage, setPercentage] = useState(0);
     startSpeechRecognition();
 
     const constraints = isVideo
-      ? { video: true, audio: true }
-      : { audio: true };
+      ? { video: true, audio: false }
+      : { audio: false };
 
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia(constraints);

@@ -1,15 +1,15 @@
 
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
-import { FaMobileAlt, FaUser, FaCity } from 'react-icons/fa';
-import { FaUserTie, FaBuilding, FaMapMarkerAlt, FaDollarSign, FaBriefcase } from "react-icons/fa";
+import {  FaCity } from 'react-icons/fa';
+import { FaUserTie, FaBuilding, FaMapMarkerAlt,  } from "react-icons/fa";
 
-import { MdOutlineRealEstateAgent } from 'react-icons/md';
-import { FiTrendingUp } from 'react-icons/fi';
+// import { MdOutlineRealEstateAgent } from 'react-icons/md';
+// import { FiTrendingUp } from 'react-icons/fi';
 export default function CreateListing() {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);

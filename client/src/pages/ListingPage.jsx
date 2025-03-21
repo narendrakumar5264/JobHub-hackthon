@@ -1,12 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
+
+
+import { ThemeContext } from '../context/ThemeContext';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
 import {
-  
+
   FaMapMarkerAlt,
   FaShare,
   FaStar,
@@ -25,9 +31,8 @@ export default function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const params = useParams();
-  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -51,7 +56,14 @@ export default function Listing() {
     fetchListing();
   }, [params.listingId]);
 
+  useEffect(() => {
+    gsap.from(".job-title", { duration: 1, y: -50, opacity: 0, ease: "power3.out" });
+    gsap.from(".job-details", { duration: 1, x: -50, opacity: 0, ease: "power3.out", delay: 0.5 });
+    gsap.from(".recruiter-info", { duration: 1, x: 50, opacity: 0, ease: "power3.out", delay: 1 });
+  }, [listing]);
+
   return (
+
     <main className="bg-gray-50 min-h-screen mt-16">
       {loading && <p className='text-center my-7 text-2xl text-gray-700 font-medium'>Loading...</p>}
       {error && (
@@ -88,11 +100,11 @@ export default function Listing() {
                 }}
               />
             </div>
-            {copied && (
+            {/* {copied && (
               <p className="absolute top-16 right-5 z-10 bg-white p-2 rounded-md shadow-md text-sm text-green-600 font-semibold">
                 Link copied!
               </p>
-            )}
+            )} */}
           </div>
 
           <div className="bg-white p-8 rounded-lg shadow-lg">
@@ -166,8 +178,12 @@ export default function Listing() {
               </button>
             </div>
           </div>
+
+
         </div>
       )}
+      
+     
     </main>
   );
 }

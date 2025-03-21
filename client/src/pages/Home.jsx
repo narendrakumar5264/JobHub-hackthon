@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
+import { useEffect, useState, useContext } from 'react';
+import { Link,  } from 'react-router-dom';
+import { FaSearch,FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram  } from 'react-icons/fa';
 
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem.jsx';
 import Header from '../components/Header.jsx';
-import background from '../assets/Companies.jpg';
-import about from '../assets/boy.jpg';
+import background from '../assets/giphy3.gif';
+import boyImage from '../assets/giphy6.webp';
 
 import { FiArrowRight } from "react-icons/fi";
 import yourGif from '../assets/gif.gif';
+import { ThemeContext } from "../context/ThemeContext";
 
 
 
-
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 import samsung   from '../assets/samsung.jpeg';
 import google   from '../assets/google.jpeg';
@@ -35,8 +34,8 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
-
+  
+  const { theme } = useContext(ThemeContext);
 
   const [visibleCompany, setvisibleCompany] = useState(4); 
 
@@ -73,14 +72,7 @@ const showcompany = [
 ];
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('company', searchTerm); // Changed 'searchTerm' to 'company'
-    const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
-  };
-
+ 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const companyFromUrl = urlParams.get('company'); // Changed 'searchTerm' to 'company'
@@ -146,7 +138,7 @@ const showcompany = [
   };
 
   return (
-    <div>
+    <div className={`${theme === "dark" ? "dark" : ""}`}>
  <div className="relative w-full h-full">
   <div
     className="relative h-[400px] flex flex-col justify-center items-center text-white bg-cover bg-center"
@@ -182,16 +174,15 @@ const showcompany = [
 
         
         {/* Search bar */}
-        <form
-  onSubmit={handleSubmit}
-  className="absolute bg-transparent bottom-4 left-1/2 transform
+        <form   className={`${theme === "dark" ? "dark" : ""} absolute bg-transparent bottom-4 left-1/2 transform
    -translate-x-1/2 w-10/12 sm:w-full max-w-sm sm:max-w-xl md:max-w-2xl border flex items-center gap-3 
-  rounded-full px-4 py-2 border-blue-700 shadow-lg"
+  rounded-full px-4 py-2 border-blue-700 shadow-lg`}
+
 >
   <input
     type="text"
     placeholder="Search your Dream Job . . ."
-    className="bg-transparent flex-grow px-2 text-sm text-white placeholder-white focus:outline-none"
+    className="  bg-transparent flex-grow px-2 text-sm text-white placeholder-white focus:outline-none"
     value={searchTerm}
     onChange={handleChange}
   />
@@ -229,14 +220,17 @@ const showcompany = [
 )}
 
 
-      </div>
+      </div >
 
-      
-      <div className="relative py-20 bg-gradient-to-b from-blue-800 to-black
-">
-  <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-16">
-    <div className="flex-1 space-y-6">
-      <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+
+      <div >
+      <div className="relative py-20 bg-gradient-to-b from-gray-100 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+
+
+  <div className="max-w-5xl mx-auto px-4  flex flex-col lg:flex-row justify-between items-center gap-15">
+    <div className="flex-1 space-y-6 mx-9" >
+      <h2 className="text-4xl lg:text-5xl font-bold text-black-900 leading-tight">
+
         Take an <span className="text-cyan-600">AI-Based</span> Interview with ease
       </h2>
       <p className="text-lg text-slate-600 leading-relaxed">
@@ -251,14 +245,15 @@ const showcompany = [
         <FiArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
       </Link>
     </div>
-    <div className="flex-1">
+    <div className="flex-1 ">
       <img
         src={yourGif}
         alt="Property visualization"
-        className="w-full max-w-xl rounded-2xl transform hover:scale-[1.02] transition-transform"
+        className="w-full  max-w-xl rounded-xl transform hover:scale-[1.02] transition-transform"
       />
     </div>
   </div>
+</div>
 </div>
 
   
@@ -270,10 +265,12 @@ const showcompany = [
 
 
       
-      <div className=" bg-gradient-to-b from-blue-600 via-blue-900 to-black
-">
-      <div className="max-w-7xl mx-auto p-6  bg-gradient-to-b from-blue-600 via-blue-900 to-black
-">
+
+<div className="bg-white dark:bg-gray-900">
+
+<div className="max-w-7xl mx-auto p-6 bg-white dark:bg-gray-900">
+
+
         <h2 className="text-4xl font-bold text-center text-slate-800 mb-10">
           Discover Job Opennings Across companies
         </h2>
@@ -294,7 +291,7 @@ const showcompany = [
         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black flex items-end p-4">
+      <div className="absolute inset-0 bg-white-to-t from-gray-800 flex items-end p-4">
         <div>
           <h4 className="text-sm text-white">{company.properties}+ Openings</h4>
           <h3 className="text-white text-xl font-semibold">
@@ -321,39 +318,44 @@ const showcompany = [
     </div>
 
 
-    <section className="bg-gradient-to-b from-blue-600 via-blue-900 to-black
-py-16">
-  <div className="max-w-7xl mx-auto px-4">
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+    <section className={`py-16 transition-all duration-300 ${theme === "dark" ? "bg-gray-900" : "bg-gradient-to-r from-blue-50 to-indigo-50"}`}>
+
+
+    <div className="max-w-7xl mx-auto px-4">
+    <div className={`rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row transition-all duration-300 ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white"}`}>
+      
+      {/* Left Section */}
       <div className="md:w-3/5 p-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-3">JobHub<span className="text-blue-600">Premium</span> Access</h2>
-        <p className="text-gray-600 mb-6">Gain exclusive access to top job opportunities before they are publicly listed.</p>
-        
+        <h2 className={`text-2xl font-bold mb-3 ${theme === "dark" ? "text-white" : "text-gray-800"}`}>
+          JobHub<span className="text-blue-600"> Premium</span> Access
+        </h2>
+        <p className={`mb-6 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}>
+          Gain exclusive access to top job opportunities before they are publicly listed.
+        </p>
+
+        {/* Features List */}
         <div className="space-y-3 mb-6">
-          <div className="flex items-center">
-            <svg className="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-            </svg>
-            <span className="text-gray-700">Priority access to top job opportunities</span>
-          </div>
-          <div className="flex items-center">
-            <svg className="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-            </svg>
-            <span className="text-gray-700">Personalized job alerts</span>
-          </div>
-          <div className="flex items-center">
-            <svg className="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-            </svg>
-            <span className="text-gray-700">Job Market Trends</span>
-          </div>
+          {[
+            "Priority access to top job opportunities",
+            "Personalized job alerts",
+            "Job Market Trends"
+          ].map((text, index) => (
+            <div key={index} className="flex items-center">
+              <svg className="w-5 h-5 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+              </svg>
+              <span className={`${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>{text}</span>
+            </div>
+          ))}
         </div>
-        
+
+        {/* Pricing Section */}
         <div className="flex items-center mb-6">
           <div>
-            <p className="text-sm uppercase tracking-wide text-gray-500">Starting from</p>
-            <p className="font-bold text-xl text-gray-900">$19.99<span className="text-sm font-normal text-gray-500">/month</span></p>
+            <p className={`text-sm uppercase tracking-wide ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>Starting from</p>
+            <p className={`font-bold text-xl ${theme === "dark" ? "text-white" : "text-gray-900"}`}>
+              $19.99<span className={`text-sm font-normal ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>/month</span>
+            </p>
           </div>
           <Link to="/subscription" className="ml-auto">
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 flex items-center">
@@ -365,12 +367,13 @@ py-16">
           </Link>
         </div>
       </div>
-      
-      <div className="md:w-2/5 px-8 bg-blue-600 p-8 text-white flex items-center ">
+
+      {/* Right Section */}
+      <div className={`md:w-2/5 px-8 p-8 flex items-center transition-all duration-300 ${theme === "dark" ? "bg-gray-700 text-white" : "bg-blue-600 text-white"}`}>
         <div>
-          <h3 className="text-xl font-bold mb-3  ">Why Choose JobHub Premium?</h3>
-         <br />
-          <p className="mb-4">Our premium members find their dream Jobs 2x faster than standard users.</p>
+          <h3 className="text-xl font-bold mb-3">Why Choose JobHub Premium?</h3>
+          <br />
+          <p className="mb-4">Our premium members find their dream jobs 2x faster than standard users.</p>
           <div className="flex items-center">
             <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
@@ -379,9 +382,11 @@ py-16">
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
 
 
       {/* listing results for offer, sale, and rent */}
@@ -446,96 +451,124 @@ py-16">
 
 
 
-<div className="bg-gray-100 p-10 mt-0">
-  {/* Title */}
-  <h2 className="text-3xl md:text-4xl flex justify-center font-extrabold text-gray-900">
-    <span className="text-black">About</span> <span className="text-indigo-600">JobHub</span>
-  </h2>
-  <p className="text-gray-500 flex justify-center mt-2">
-    Your Gateway to the Best Job Opportunities
-  </p>
-
-  {/* Description */}
-  <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-12">
-    {/* Left: Image */}
-    <div className="w-full md:w-1/3 relative">
-      <img
-        src={about}
-        alt="Professional Workspace"
-        className="w-full h-80 md:h-[430px] rounded-tl-[30%] rounded-tr-[5%] shadow-xl border-4 border-indigo-500"
-      />
-    </div>
-
-    {/* Right: Content */}
-    <div className="w-full md:ml-24 md:w-1/2 text-center md:text-left">
-      {/* Stats Grid */}
-      <div className="bg-gradient-to-r from-indigo-50 to-gray-200 py-10 px-6 rounded-lg shadow-lg">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-          {[
-            { value: "500+", label: "Top Companies" },
-            { value: "1M+", label: "Jobs Available" },
-            { value: "200K+", label: "Successful Hires" },
-            { value: "100+", label: "Industries Covered" }
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="p-6 bg-white rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-indigo-50"
-            >
-              <h3 className="text-4xl font-bold text-indigo-700">{stat.value}</h3>
-              <p className="text-gray-600 text-sm mt-2">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Description */}
-      <p className="text-gray-700 mt-6 leading-relaxed">
-        <span className="font-medium text-gray-900">JobHub</span> is dedicated to connecting job seekers with top employers. Our platform offers real-time job listings, AI-driven job matching, and career guidance tailored to your expertise.
+  <div
+      className={`p-10 mt-0 transition-all duration-300 ${theme === "dark" ? "bg-gray-900" : "bg-gray-100"}`}
+    >
+      {/* Title */}
+      <h2
+        className={`text-3xl md:text-4xl flex justify-center font-extrabold ${
+          theme === "dark" ? "text-white" : "text-gray-900"
+        }`}
+      >
+        <span className="text-black dark:text-white">About</span>{" "}
+        <span className="text-indigo-600">JobHub</span>
+      </h2>
+      <p
+        className={`flex justify-center mt-2 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
+      >
+        Your Gateway to the Best Job Opportunities
       </p>
 
-      {/* CTA Button */}
-      <a
-        href="/about"
-        className="inline-block mt-6 px-6 py-3 text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md transition-all duration-300"
-      >
-        Learn More
-      </a>
+      {/* Description */}
+      <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-12">
+        {/* Left: Image */}
+        <div className="w-full md:w-1/3 relative">
+        <img
+      src={boyImage}
+      alt="Professional Workspace"
+      className="w-full h-80 md:h-[430px] rounded-tl-[10%] rounded-tr-[5%] shadow-xl border-4 border-indigo-500"
+    />
+        </div>
+
+        {/* Right: Content */}
+        <div className="w-full md:ml-24 md:w-1/2 text-center md:text-left">
+          {/* Stats Grid */}
+          <div
+            className={`py-10 px-6 rounded-lg shadow-lg transition-all duration-300 ${
+              theme === "dark" ? "bg-gray-800" : "bg-gradient-to-r from-indigo-50 to-gray-200"
+            }`}
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+              {[
+                { value: "500+", label: "Top Companies" },
+                { value: "1M+", label: "Jobs Available" },
+                { value: "200K+", label: "Successful Hires" },
+                { value: "100+", label: "Industries Covered" },
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className={`p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 
+                    ${theme === "dark" ? "bg-gray-700 hover:bg-gray-600" : "bg-white hover:bg-indigo-50"}`}
+                >
+                  <h3
+                    className={`text-4xl font-bold ${
+                      theme === "dark" ? "text-indigo-400" : "text-indigo-700"
+                    }`}
+                  >
+                    {stat.value}
+                  </h3>
+                  <p
+                    className={`text-sm mt-2 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+                  >
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Description */}
+          <p
+            className={`mt-6 leading-relaxed ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
+            <span className="font-medium text-gray-900 dark:text-white">JobHub</span> is dedicated to connecting job seekers with top employers.
+            Our platform offers real-time job listings, AI-driven job matching, and career guidance tailored to your expertise.
+          </p>
+
+          {/* CTA Button */}
+          <a
+            href="/about"
+            className="inline-block mt-6 px-6 py-3 text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md transition-all duration-300"
+          >
+            Learn More
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 
     {/* Footer */}
-    <footer className="bg-gray-900 text-gray-200 py-10">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className={`relative ${theme === "dark" ? "bg-gray-900 text-gray-300" : "bg-gray-100 text-gray-700"} transition-all py-12`}>
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        
         {/* JobHub Info */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">JobHub 🚀</h3>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Your trusted partner for discovering job opportunities across industries. 
-            We make finding your dream job simple and efficient.
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>JobHub 🚀</h3>
+          <p className="text-sm leading-relaxed">
+            Discover job opportunities across industries. We make finding your dream job simple & efficient.
           </p>
+
           {/* Social Media Links */}
-          <div className="flex gap-4 mt-4">
-            <a href="#" className="text-gray-400 hover:text-blue-500 transition">
-              <FaFacebookF size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-blue-400 transition">
-              <FaTwitter size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-blue-700 transition">
-              <FaLinkedinIn size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-pink-500 transition">
-              <FaInstagram size={20} />
-            </a>
+          <div className="flex gap-3 mt-5">
+            {[
+              { icon: <FaFacebookF />, color: "hover:bg-blue-500" },
+              { icon: <FaTwitter />, color: "hover:bg-blue-400" },
+              { icon: <FaLinkedinIn />, color: "hover:bg-blue-700" },
+              { icon: <FaInstagram />, color: "hover:bg-pink-500" }
+            ].map((item, index) => (
+              <a key={index} href="#" className={`p-3 ${theme === "dark" ? "bg-gray-700" : "bg-gray-200"} rounded-full ${item.color} transition`}>
+                {item.icon}
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Quick Links */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">Quick Links</h3>
-          <ul className="text-sm text-gray-400 space-y-2">
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>Quick Links</h3>
+          <ul className="space-y-2 text-sm">
             <li><Link to="/search" className="hover:text-blue-500 transition">🔍 Search Jobs</Link></li>
             <li><Link to="/about" className="hover:text-blue-500 transition">ℹ️ About Us</Link></li>
             <li><Link to="/" className="hover:text-blue-500 transition">🏠 Home</Link></li>
@@ -543,30 +576,28 @@ py-16">
         </div>
 
         {/* Top Companies */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">Top Companies</h3>
-          <ul className="text-sm text-gray-400 space-y-2">
-            {showcompany.slice(0, 6).map((company, index) => (
-              <li key={index} className="hover:text-blue-500 transition">
-                {company.name}
-              </li>
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>Top Companies</h3>
+          <ul className="space-y-2 text-sm">
+            {["Google", "Microsoft", "Amazon", "Tesla", "Facebook", "Apple"].map((company, index) => (
+              <li key={index} className="hover:text-blue-500 transition">{company}</li>
             ))}
           </ul>
         </div>
 
         {/* Newsletter Subscription */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">📩 Stay Updated</h3>
-          <p className="text-sm text-gray-400 mb-3">
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>📩 Stay Updated</h3>
+          <p className="text-sm mb-3">
             Subscribe to our newsletter for job alerts & career tips!
           </p>
-          <form className="flex bg-gray-800 rounded-md overflow-hidden">
+          <form className={`flex ${theme === "dark" ? "bg-gray-700" : "bg-gray-200"} rounded-lg overflow-hidden`}>
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-grow p-2 text-gray-900 outline-none"
+              className={`flex-grow p-3 ${theme === "dark" ? "text-gray-200 bg-transparent placeholder-gray-400" : "text-gray-900 bg-white placeholder-gray-600"} outline-none`}
             />
-            <button className="bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700 transition">
+            <button className="bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-700 transition">
               Subscribe
             </button>
           </form>
@@ -574,11 +605,10 @@ py-16">
       </div>
 
       {/* Copyright Section */}
-      <div className="text-center text-sm text-gray-600 mt-8 border-t border-gray-700 pt-4">
+      <div className={`text-center text-sm mt-10 border-t ${theme === "dark" ? "border-gray-700 text-gray-400" : "border-gray-300 text-gray-600"} pt-4`}>
         © 2025 <span className="text-blue-400 font-semibold">JobHub</span>. All rights reserved.
       </div>
     </footer>
-
     </div>
   );
 }
