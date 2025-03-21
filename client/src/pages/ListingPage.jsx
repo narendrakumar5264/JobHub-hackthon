@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
-import { Link } from "react-router-dom";
+
 
 import { ThemeContext } from '../context/ThemeContext';
 import {
@@ -24,7 +24,6 @@ import {
   FaUserTie,
   FaBriefcase,
 } from 'react-icons/fa';
-import {  FaClipboardList } from 'react-icons/fa';
 
 export default function Listing() {
   const [listing, setListing] = useState(null);
@@ -66,16 +65,17 @@ export default function Listing() {
       <p className="text-center my-7 text-2xl text-red-600 dark:text-red-400 font-medium">Something went wrong!</p>
     )}
     {listing && !loading && !error && (
-      <div className="w-full max-w-6xl bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-2xl flex flex-col md:flex-row relative transform transition-all duration-500 hover:scale-105 border border-gray-300 dark:border-gray-600"> 
+      <div className="w-full max-w-6xl bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl flex relative transform transition-all duration-500 hover:scale-105 border border-gray-300 dark:border-gray-600"> 
         
         {/* Left Section - Image and Recruiter Info */}
-        <div className="md:w-1/3 flex flex-col items-center gap-6 animate-slideInLeft">
+        <div className="w-1/3 flex flex-col items-center gap-6 animate-slideInLeft">
           {listing.imageUrls.length > 0 && (
             <div className="relative w-full border border-gray-400 dark:border-gray-600 rounded-lg overflow-hidden shadow-xl">
               <img src={listing.imageUrls[0]} alt="Company Logo" className="h-48 w-full object-cover rounded-lg" />
             </div>
           )}
           
+          {/* Recruiter Information */}
           <div className="w-full bg-gray-100 dark:bg-gray-700 p-6 rounded-lg border border-gray-400 dark:border-gray-600">
             <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 text-center">Recruiter Information</p>
             <ul className="mt-4 text-gray-600 dark:text-gray-300 list-disc pl-6 space-y-2">
@@ -89,18 +89,18 @@ export default function Listing() {
               </li>
             </ul>
             <div className="mt-6 flex flex-col gap-4">
-               <Link to="/Recuirtment">
               <button className="w-full bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-medium flex items-center justify-center hover:bg-blue-700 dark:hover:bg-blue-800 transition duration-300 animate-pulse">
-                <FaPhoneAlt className="mr-2" />ApplyNow
+                <FaPhoneAlt className="mr-2" /> Contact Recruiter
               </button>
-              </Link>
-             
+              <button className="w-full bg-green-600 dark:bg-green-700 text-white px-6 py-3 rounded-lg text-lg font-medium flex items-center justify-center hover:bg-green-700 dark:hover:bg-green-800 transition duration-300 animate-pulse">
+                <FaWhatsapp className="mr-2" /> Chat on WhatsApp
+              </button>
             </div>
           </div>
         </div>
         
         {/* Right Section - Job Details */}
-        <div className="md:w-2/3 p-8 animate-slideInRight">
+        <div className="w-2/3 p-8 animate-slideInRight">
           <p className="text-4xl font-bold text-gray-900 dark:text-gray-100 animate-fadeInUp">{listing.jobTitle}</p>
           <p className="text-xl text-gray-600 dark:text-gray-300">{listing.companyName}</p>
           <p className="text-xl text-gray-600 dark:text-gray-300">Salary: ₹{listing.salary} per annum</p>
@@ -115,7 +115,7 @@ export default function Listing() {
           <ul className="grid grid-cols-2 gap-4 mt-6 text-gray-700 dark:text-gray-300 animate-fadeInUp">
             <li className="flex items-center">
               <FaUserTie className="text-blue-700 text-lg mr-2" />
-              {listing.experienceRequired} of  experience
+              {listing.experienceRequired} years experience
             </li>
             <li className="flex items-center">
               <FaBriefcase className="text-green-700 text-lg mr-2" />
@@ -123,9 +123,12 @@ export default function Listing() {
             </li>
             <li className="flex items-center">
               <FaClock className="text-red-700 text-lg mr-2" />
-              {listing.skillsRequired}
+              {listing.workingHours}
             </li>
-           
+            <li className="flex items-center">
+              <FaBuilding className="text-purple-700 text-lg mr-2" />
+              {listing.locationType}
+            </li>
           </ul>
           
           <div className="mt-6 flex items-center animate-fadeInUp">
@@ -134,40 +137,9 @@ export default function Listing() {
               <span className="ml-2 text-gray-700 dark:text-gray-300">(4.5/5)</span>
             </div>
           </div>
-
-          {/* Recruitment Process */}
-          <div className="mt-8 p-6 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-lg border border-gray-300 dark:border-gray-600">
-  <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
-    <FaClipboardList className="mr-2 text-blue-600" /> Recruitment Process
-  </p>
-  <ol className="mt-4 text-gray-700 dark:text-gray-300 list-decimal pl-6 space-y-3">
-    <li>
-      <strong>Online Application:</strong> Submit your resume and cover letter through our careers portal. Ensure your resume highlights relevant skills and experience.
-    </li>
-    <li>
-      <strong>Initial Screening:</strong> Shortlisted candidates will be contacted for a brief telephonic or virtual interview. This round assesses basic qualifications, communication skills, and alignment with the job role.
-    </li>
-    <li>
-      <strong>Technical Assessment:</strong> Candidates may be required to complete an online coding challenge or a problem-solving test relevant to the role. This evaluates your technical expertise and logical thinking.
-    </li>
-    <li>
-      <strong>Technical Interview:</strong> A detailed one-on-one or panel interview focusing on problem-solving, system design, data structures, and algorithms. You may also be asked to work on a live coding problem or discuss past projects.
-    </li>
-    <li>
-      <strong>HR Interview:</strong> A discussion on behavioral aspects, soft skills, career aspirations, and cultural fit within the company. Salary expectations and benefits are also discussed in this round.
-    </li>
-    <li>
-      <strong>Final Offer:</strong> Selected candidates will receive an official offer letter, along with details regarding compensation, job role, and onboarding process.
-    </li>
-    <li>
-      <strong>Onboarding & Training:</strong> Once the offer is accepted, candidates will go through an onboarding process that includes documentation, orientation sessions, and team introductions.
-    </li>
-  </ol>
-</div>
         </div>
       </div>
     )}
   </main>
-
   );
 }

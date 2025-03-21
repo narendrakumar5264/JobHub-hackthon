@@ -192,21 +192,40 @@ const Resume = () => {
    
      
     </motion.div>
-    {response2 && (
+ {response2 && (
   <motion.div
-    className="flex-1 p-20 bg-gray-800 rounded-xl shadow-lg border  border-gray-700"
+    className="flex-1 p-10 bg-gray-800 rounded-xl shadow-lg border border-gray-700"
     initial={{ opacity: 0, x: 50 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
   >
-    <h3 className="text-4xl font-semibold mb-6 text-green-400">Roadmap:</h3>
-   
-    <p className="text-md text-gray-300 whitespace-pre-line leading-relaxed">
-      {response2}
-    </p>
-  </motion.div>
+    <h3 className="text-4xl font-semibold mb-6 text-green-400 flex items-center">
+      📌 Career Roadmap
+    </h3>
 
+    <div className="space-y-6">
+      {response2.split("\n").map((line, index) => {
+        if (line.includes(":")) {
+          const [title, content] = line.split(":");
+          return (
+            <div key={index} className="p-4 bg-gray-900 rounded-lg shadow-md border border-gray-700">
+              <h4 className="text-xl font-semibold text-yellow-400 flex items-center">
+                ✅ {title.trim()}
+              </h4>
+              <p className="text-md text-gray-300 mt-2">{content.trim()}</p>
+            </div>
+          );
+        }
+        return line.trim() ? (
+          <p key={index} className="text-md text-gray-300 leading-relaxed">
+            {line}
+          </p>
+        ) : null;
+      })}
+    </div>
+  </motion.div>
 )}
+
     </motion.div>
   );
 };
