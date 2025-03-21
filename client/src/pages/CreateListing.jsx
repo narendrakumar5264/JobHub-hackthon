@@ -19,6 +19,7 @@ export default function CreateListing() {
     recruiterName: "",
     companyName: "",
     jobTitle: "",
+    imageUrls: [],
     // location: "",
     salary: "",
     jobType: "",
@@ -31,10 +32,10 @@ export default function CreateListing() {
 
   const [files, setFiles] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
-  // const [uploadStatus, setUploadStatus] = useState("");
+  const [uploadStatus, setUploadStatus] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [isUploading, setIsUploading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const rajasthanCities = [
     "Jaipur",
     "Jodhpur",
@@ -58,76 +59,76 @@ export default function CreateListing() {
     }));
   };
 
-  // const handleFileChange = (e) => {
-  //   const selectedFiles = Array.from(e.target.files);
-  //   if (files.length + selectedFiles.length <= 6) {
-  //     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-  //     setUploadStatus("");
-  //   } else {
-  //     setUploadStatus("You can only upload a total of 6 images.");
-  //   }
-  // };
+  const handleFileChange = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    if (files.length + selectedFiles.length <= 6) {
+      setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+      setUploadStatus("");
+    } else {
+      setUploadStatus("You can only upload a total of 6 images.");
+    }
+  };
 
-  // const handleUploadClick = async () => {
-  //   setIsUploading(true);
-  //   if (files.length === 0) {
-  //     setUploadStatus("No files selected for upload.");
-  //     return;
-  //   }
+  const handleUploadClick = async () => {
+    setIsUploading(true);
+    if (files.length === 0) {
+      setUploadStatus("No files selected for upload.");
+      return;
+    }
 
-  //   try {
-  //     const promises = files.map((file, index) => storeImage(file, index));
-  //     const imageUrls = await Promise.all(promises);
-  //     setUploadedImages(imageUrls);
-  //     setFormData((prevFormData) => ({
-  //       ...prevFormData,
-  //       imageUrls,
-  //     }));
-  //     setIsUploading(false);
-  //     setUploadStatus("All images uploaded successfully!");
-  //   } catch (error) {
-  //     console.error("Error uploading images:", error);
-  //     setUploadStatus("Some images failed to upload. Please try again.");
-  //   }
-  // };
+    try {
+      const promises = files.map((file, index) => storeImage(file, index));
+      const imageUrls = await Promise.all(promises);
+      setUploadedImages(imageUrls);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        imageUrls,
+      }));
+      setIsUploading(false);
+      setUploadStatus("All images uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading images:", error);
+      setUploadStatus("Some images failed to upload. Please try again.");
+    }
+  };
 
-  // const storeImage = (file, index) => {
-  //   return new Promise((resolve, reject) => {
-  //     const data = new FormData();
-  //     data.append("file", file);
-  //     data.append("upload_preset", "Realstate");
-  //     data.append("cloud_name", "dvph1rffn");
+  const storeImage = (file, index) => {
+    return new Promise((resolve, reject) => {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "Realstate");
+      data.append("cloud_name", "dvph1rffn");
 
-  //     const xhr = new XMLHttpRequest();
-  //     xhr.open(
-  //       "POST",
-  //       "https://api.cloudinary.com/v1_1/dvph1rffn/image/upload",
-  //       true
-  //     );
+      const xhr = new XMLHttpRequest();
+      xhr.open(
+        "POST",
+        "https://api.cloudinary.com/v1_1/dvph1rffn/image/upload",
+        true
+      );
 
-  //     xhr.onload = () => {
-  //       if (xhr.status === 200) {
-  //         const uploadedImage = JSON.parse(xhr.responseText);
-  //         resolve(uploadedImage.url);
-  //       } else {
-  //         reject(new Error(`Failed to upload file: ${file.name}`));
-  //       }
-  //     };
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          const uploadedImage = JSON.parse(xhr.responseText);
+          resolve(uploadedImage.url);
+        } else {
+          reject(new Error(`Failed to upload file: ${file.name}`));
+        }
+      };
 
-  //     xhr.onerror = () => {
-  //       reject(new Error("Network error during upload"));
-  //     };
+      xhr.onerror = () => {
+        reject(new Error("Network error during upload"));
+      };
 
-  //     xhr.send(data);
-  //   });
-  // };
+      xhr.send(data);
+    });
+  };
   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // if (uploadedImages.length < 1)
-      //   return setError('You must upload at least one image');
+      if (uploadedImages.length < 1)
+        return setError('You must upload at least one image');
       // if (+formData.regularPrice < +formData.discountPrice)
       //   return setError('Discount price must be lower than regular price');
       console.log('Form Body:', formData);
@@ -160,10 +161,10 @@ export default function CreateListing() {
     }
   };
 
-  // const handleRemoveImage = (index) => {
-  //   setUploadedImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  //   setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-  // };
+  const handleRemoveImage = (index) => {
+    setUploadedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  };
 
 
   return (
@@ -314,6 +315,62 @@ export default function CreateListing() {
            <option value="part-time">Part-Time</option>
            <option value="internship">Internship</option>
          </select>
+
+         <div className="flex flex-col gap-4 mt-6">
+                <p className="font-semibold text-gray-700">
+                  Images:
+                  <span className="font-normal text-gray-500 ml-2 text-sm">
+                    The first image will be the cover (max 6)
+                  </span>
+                </p>
+                <div className="flex gap-4">
+                  <input
+                    className="p-3 border border-gray-300 rounded w-full focus:ring-2 focus:ring-blue-400"
+                    type="file"
+                    id="images"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    multiple
+                  />
+               <button
+      type="button"
+      onClick={handleUploadClick}
+      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+      disabled={isUploading}
+    >
+      {isUploading ? "Uploading..." : "Upload"}
+    </button>
+                </div>
+                {uploadStatus && (
+                  <p
+                    className={`text-sm mt-2 ${
+                      uploadStatus.includes("successfully") ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {uploadStatus}
+                  </p>
+                )}
+                {uploadedImages.length > 0 && (
+                  <div className="flex flex-wrap gap-4 mt-4">
+                    {uploadedImages.map((url, index) => (
+                      <div key={index} className="relative">
+                        <img
+                          src={url}
+                          alt={`Uploaded ${index}`}
+                          className="w-24 h-24 object-cover rounded-lg shadow-md"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(index)}
+                          className="absolute top-1 right-1 bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
          <button
            type="button"
            onClick={() => setPage(1)}

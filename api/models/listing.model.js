@@ -14,6 +14,10 @@ const listingCompany = new mongoose.Schema(
       type: String,
       required: true,
     },
+    imageUrls: {
+      type: Array,
+      required: true,
+    },
     // location: {
     //   type: String,
     //   required: true,

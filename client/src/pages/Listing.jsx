@@ -128,27 +128,27 @@ export default function Listings() {
                   </Link>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-gray-800 truncate mb-4 hover:text-indigo-600">
-                      <Link to={`/listing/${listing._id}`}>{listing.name}</Link>
+                      <Link to={`/listing/${listing._id}`}>{listing.jobTitle}</Link>
                     </h3>
                     <p className="text-sm text-gray-600 mt-2 mb-4 line-clamp-1">
                       {listing.description || 'No description available'}
                     </p>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-gray-500 font-medium text-lg line-through">
-                        ₹{listing.regularPrice}
+                        ₹{listing.salary}
                       </span>
-                      <div className="flex items-center">
+                      {/* <div className="flex items-center">
                         <span className="text-indigo-600 font-medium text-lg mr-2">
                           ₹{listing.discountPrice}
                         </span>
                         <span className="text-white text-xs font-bold bg-red-500 px-3 py-1 rounded-full">
                           {discountPercentage}% OFF
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                     
                     {/* Tags */}
-                    <div className="flex gap-3 mb-4 flex-wrap">
+                    {/* <div className="flex gap-3 mb-4 flex-wrap">
                       {listing.type === 'sale' && (
                         <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
                           For Sale
@@ -174,7 +174,7 @@ export default function Listings() {
                           Furnished
                         </span>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                   
                   {/* Action Buttons */}
