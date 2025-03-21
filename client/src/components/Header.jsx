@@ -30,15 +30,15 @@ export default function Header() {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch("/api/auth/signout");
+      const res = await fetch('/api/auth/signout');
       const data = await res.json();
-      if (!data.success) {
+      if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
         return;
       }
       dispatch(deleteUserSuccess(data));
     } catch (error) {
-      dispatch(deleteUserFailure(error.message));
+      dispatch(deleteUserFailure(data.message));
     }
   };
 
@@ -130,7 +130,7 @@ export default function Header() {
           <ul className="flex flex-col gap-4 p-4">
             <Link to="/" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">Home</Link>
             <Link to="/about" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">About</Link>
-            <Link to="/listing" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">Companies</Link>
+            <Link to="/listing" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">My Listings</Link>
             <Link to="/search" className="text-gray-700 dark:text-gray-200 hover:text-blue-500">Jobs</Link>
 
             {/* Theme Toggle in Mobile Menu */}

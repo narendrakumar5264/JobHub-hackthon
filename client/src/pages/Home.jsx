@@ -84,7 +84,7 @@ const showcompany = [
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4');
+        const res = await fetch('/api/listing/get');
         const data = await res.json();
         setOfferListings(data);
         fetchRentListings();
@@ -95,7 +95,7 @@ const showcompany = [
 
     const fetchRentListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?type=rent&limit=4');
+        const res = await fetch('/api/listing/get');
         const data = await res.json();
         setRentListings(data);
         fetchSaleListings();
@@ -106,7 +106,7 @@ const showcompany = [
 
     const fetchSaleListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?type=sale&limit=4');
+        const res = await fetch('/api/listing/get');
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
@@ -390,7 +390,7 @@ const showcompany = [
 
 
       {/* listing results for offer, sale, and rent */}
-      <div className='max-w-7xl md:mx-16 p-1 flex flex-col gap-8 my-10 md:grid ml-5'>
+      {/* <div className='max-w-7xl md:mx-16 p-1 flex flex-col gap-8 my-10 md:grid ml-5'>
   {offerListings && offerListings.length > 0 && (
     <div className=''>
       <div className='my-3 '>
@@ -400,7 +400,7 @@ const showcompany = [
         </Link>
       </div>
       <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory   md:grid-cols-1 md:gap-5'>
-        {offerListings.slice(0,1).map((listing) => (
+        {offerListings.slice(0,3).map((listing) => (
           <div key={listing._id} className='snap-center'>
             <ListingItem listing={listing} />
           </div>
@@ -408,18 +408,18 @@ const showcompany = [
       </div>
     </div>
   )}
-  </div>
+  </div> */}
   <div className='max-w-1xl  md:mx-0 p-2 flex flex-col gap-4  md:grid ml-0 bg-[#205781]'>
   {rentListings && rentListings.length > 0 && (
     <div className='mx-5 md:mx-16 my-10 '>
       <div className='my-2'>
-        <h2 className='text-3xl font-semibold text-black-600'>Recent Companies for jobs</h2>
+        <h2 className='text-3xl font-semibold text-black-600'>Recent  jobs</h2>
         <Link className='text-sm text-black-500 hover:underline' to={'/search?type=rent'}>
           Show more Companies for jobs
         </Link>
       </div>
       <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap'>
-        {rentListings.slice(0,1).map((listing) => (
+        {rentListings.slice(0,3).map((listing) => (
           <div key={listing._id} className='snap-center'>
             <ListingItem listing={listing} />
           </div>
@@ -439,7 +439,7 @@ const showcompany = [
         </Link>
       </div>
       <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap'>
-        {saleListings.slice(0,1).map((listing) => (
+        {saleListings.slice(0,3).map((listing) => (
           <div key={listing._id} className='snap-center'>
             <ListingItem listing={listing} />
           </div>
