@@ -9,7 +9,7 @@ import {
 } from "../redux/user/userSlice";
 import {
   FaBars,
-  FaUserEdit,
+  
   FaListAlt,
   FaSignOutAlt,
   FaInfoCircle,

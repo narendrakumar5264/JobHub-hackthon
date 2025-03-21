@@ -15,11 +15,9 @@ export const sendWelcomeEmail = (email, username) => {
     const mailOptions = {
       from: 'Jobhub@gmail.com',
       to: email,
-<<<<<<< HEAD
-      subject: 'Welcome to Our JobHub Platform!',
-=======
+
      subject: 'Welcome to Our JobHub Platform!',
->>>>>>> 010a29f7f6bf81ba3914719f7d4e310f0398b11b
+
       html: `
       <html>
           <head>

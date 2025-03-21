@@ -14,10 +14,10 @@ const listingCompany = new mongoose.Schema(
       type: String,
       required: true,
     },
-    location: {
-      type: String,
-      required: true,
-    },
+    // location: {
+    //   type: String,
+    //   required: true,
+    // },
     salary: {
       type: String,
       required: true,
@@ -35,7 +35,7 @@ const listingCompany = new mongoose.Schema(
       required: true,
     },
     skillsRequired: {
-      type: Array, // Assuming multiple skills can be selected
+      type: String, 
       required: true,
     },
     city: {
@@ -43,6 +43,10 @@ const listingCompany = new mongoose.Schema(
       required: true,
     },
     address: {
+      type: String,
+      required: true,
+    },
+    userRef: {
       type: String,
       required: true,
     },

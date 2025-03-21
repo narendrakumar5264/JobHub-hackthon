@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
+import { Link,  } from 'react-router-dom';
+import { FaSearch,FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram  } from 'react-icons/fa';
 
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
@@ -16,8 +16,6 @@ import { ThemeContext } from "../context/ThemeContext";
 
 
 
-
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 import samsung   from '../assets/samsung.jpeg';
 import google   from '../assets/google.jpeg';
@@ -36,7 +34,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
+  
   const { theme } = useContext(ThemeContext);
 
   const [visibleCompany, setvisibleCompany] = useState(4); 
@@ -74,14 +72,7 @@ const showcompany = [
 ];
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('company', searchTerm); // Changed 'searchTerm' to 'company'
-    const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
-  };
-
+ 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const companyFromUrl = urlParams.get('company'); // Changed 'searchTerm' to 'company'
@@ -231,6 +222,7 @@ const showcompany = [
 
       </div >
 
+
       <div >
       <div className="relative py-20 bg-gradient-to-b from-gray-100 to-gray-100 dark:from-gray-900 dark:to-gray-800">
 
@@ -238,6 +230,7 @@ const showcompany = [
   <div className="max-w-5xl mx-auto px-4  flex flex-col lg:flex-row justify-between items-center gap-15">
     <div className="flex-1 space-y-6 mx-9" >
       <h2 className="text-4xl lg:text-5xl font-bold text-black-900 leading-tight">
+
         Take an <span className="text-cyan-600">AI-Based</span> Interview with ease
       </h2>
       <p className="text-lg text-slate-600 leading-relaxed">
@@ -272,9 +265,11 @@ const showcompany = [
 
 
       
+
 <div className="bg-white dark:bg-gray-900">
 
 <div className="max-w-7xl mx-auto p-6 bg-white dark:bg-gray-900">
+
 
         <h2 className="text-4xl font-bold text-center text-slate-800 mb-10">
           Discover Job Opennings Across companies
@@ -322,8 +317,11 @@ const showcompany = [
       </div>
     </div>
 
+
     <section className={`py-16 transition-all duration-300 ${theme === "dark" ? "bg-gray-900" : "bg-gradient-to-r from-blue-50 to-indigo-50"}`}>
-  <div className="max-w-7xl mx-auto px-4">
+
+
+    <div className="max-w-7xl mx-auto px-4">
     <div className={`rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row transition-all duration-300 ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white"}`}>
       
       {/* Left Section */}
@@ -542,36 +540,35 @@ const showcompany = [
 
 
     {/* Footer */}
-    <footer className="bg-gray-900 text-gray-200 py-10">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className={`relative ${theme === "dark" ? "bg-gray-900 text-gray-300" : "bg-gray-100 text-gray-700"} transition-all py-12`}>
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        
         {/* JobHub Info */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">JobHub 🚀</h3>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Your trusted partner for discovering job opportunities across industries. 
-            We make finding your dream job simple and efficient.
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>JobHub 🚀</h3>
+          <p className="text-sm leading-relaxed">
+            Discover job opportunities across industries. We make finding your dream job simple & efficient.
           </p>
+
           {/* Social Media Links */}
-          <div className="flex gap-4 mt-4">
-            <a href="#" className="text-gray-400 hover:text-blue-500 transition">
-              <FaFacebookF size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-blue-400 transition">
-              <FaTwitter size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-blue-700 transition">
-              <FaLinkedinIn size={20} />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-pink-500 transition">
-              <FaInstagram size={20} />
-            </a>
+          <div className="flex gap-3 mt-5">
+            {[
+              { icon: <FaFacebookF />, color: "hover:bg-blue-500" },
+              { icon: <FaTwitter />, color: "hover:bg-blue-400" },
+              { icon: <FaLinkedinIn />, color: "hover:bg-blue-700" },
+              { icon: <FaInstagram />, color: "hover:bg-pink-500" }
+            ].map((item, index) => (
+              <a key={index} href="#" className={`p-3 ${theme === "dark" ? "bg-gray-700" : "bg-gray-200"} rounded-full ${item.color} transition`}>
+                {item.icon}
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Quick Links */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">Quick Links</h3>
-          <ul className="text-sm text-gray-400 space-y-2">
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>Quick Links</h3>
+          <ul className="space-y-2 text-sm">
             <li><Link to="/search" className="hover:text-blue-500 transition">🔍 Search Jobs</Link></li>
             <li><Link to="/about" className="hover:text-blue-500 transition">ℹ️ About Us</Link></li>
             <li><Link to="/" className="hover:text-blue-500 transition">🏠 Home</Link></li>
@@ -579,30 +576,28 @@ const showcompany = [
         </div>
 
         {/* Top Companies */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">Top Companies</h3>
-          <ul className="text-sm text-gray-400 space-y-2">
-            {showcompany.slice(0, 6).map((company, index) => (
-              <li key={index} className="hover:text-blue-500 transition">
-                {company.name}
-              </li>
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>Top Companies</h3>
+          <ul className="space-y-2 text-sm">
+            {["Google", "Microsoft", "Amazon", "Tesla", "Facebook", "Apple"].map((company, index) => (
+              <li key={index} className="hover:text-blue-500 transition">{company}</li>
             ))}
           </ul>
         </div>
 
         {/* Newsletter Subscription */}
-        <div>
-          <h3 className="text-xl font-bold mb-4 text-white">📩 Stay Updated</h3>
-          <p className="text-sm text-gray-400 mb-3">
+        <div className={`p-5 ${theme === "dark" ? "bg-gray-800" : "bg-white"} rounded-lg shadow-md`}>
+          <h3 className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-gray-900"} mb-4`}>📩 Stay Updated</h3>
+          <p className="text-sm mb-3">
             Subscribe to our newsletter for job alerts & career tips!
           </p>
-          <form className="flex bg-gray-800 rounded-md overflow-hidden">
+          <form className={`flex ${theme === "dark" ? "bg-gray-700" : "bg-gray-200"} rounded-lg overflow-hidden`}>
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-grow p-2 text-gray-900 outline-none"
+              className={`flex-grow p-3 ${theme === "dark" ? "text-gray-200 bg-transparent placeholder-gray-400" : "text-gray-900 bg-white placeholder-gray-600"} outline-none`}
             />
-            <button className="bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700 transition">
+            <button className="bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-700 transition">
               Subscribe
             </button>
           </form>
@@ -610,11 +605,10 @@ const showcompany = [
       </div>
 
       {/* Copyright Section */}
-      <div className="text-center text-sm text-gray-600 mt-8 border-t border-gray-700 pt-4">
+      <div className={`text-center text-sm mt-10 border-t ${theme === "dark" ? "border-gray-700 text-gray-400" : "border-gray-300 text-gray-600"} pt-4`}>
         © 2025 <span className="text-blue-400 font-semibold">JobHub</span>. All rights reserved.
       </div>
     </footer>
-
     </div>
   );
 }

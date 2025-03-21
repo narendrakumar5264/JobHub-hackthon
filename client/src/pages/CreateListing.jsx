@@ -1,15 +1,15 @@
 
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
-import { FaMobileAlt, FaUser, FaCity } from 'react-icons/fa';
-import { FaUserTie, FaBuilding, FaMapMarkerAlt, FaDollarSign, FaBriefcase } from "react-icons/fa";
+import {  FaCity } from 'react-icons/fa';
+import { FaUserTie, FaBuilding, FaMapMarkerAlt,  } from "react-icons/fa";
 
-import { MdOutlineRealEstateAgent } from 'react-icons/md';
-import { FiTrendingUp } from 'react-icons/fi';
+// import { MdOutlineRealEstateAgent } from 'react-icons/md';
+// import { FiTrendingUp } from 'react-icons/fi';
 export default function CreateListing() {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -19,7 +19,7 @@ export default function CreateListing() {
     recruiterName: "",
     companyName: "",
     jobTitle: "",
-    location: "",
+    // location: "",
     salary: "",
     jobType: "",
     description: "",
@@ -32,8 +32,8 @@ export default function CreateListing() {
   const [files, setFiles] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   // const [uploadStatus, setUploadStatus] = useState("");
-  // const [error, setError] = useState(false);
-  // const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [isUploading, setIsUploading] = useState(false);
   const rajasthanCities = [
     "Jaipur",
@@ -121,14 +121,16 @@ export default function CreateListing() {
   //     xhr.send(data);
   //   });
   // };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (uploadedImages.length < 1)
-        return setError('You must upload at least one image');
-      if (+formData.regularPrice < +formData.discountPrice)
-        return setError('Discount price must be lower than regular price');
+      // if (uploadedImages.length < 1)
+      //   return setError('You must upload at least one image');
+      // if (+formData.regularPrice < +formData.discountPrice)
+      //   return setError('Discount price must be lower than regular price');
+      console.log('Form Body:', formData);
       setLoading(true);
       setError(false);
       const res = await fetch('/api/listing/create', {
@@ -141,7 +143,12 @@ export default function CreateListing() {
           userRef: currentUser._id,
         }),
       });
+  
+
+
       const data = await res.json();
+      
+
       setLoading(false);
       if (data.success === false) {
         setError(data.message);
@@ -153,10 +160,10 @@ export default function CreateListing() {
     }
   };
 
-  const handleRemoveImage = (index) => {
-    setUploadedImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-  };
+  // const handleRemoveImage = (index) => {
+  //   setUploadedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  //   setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  // };
 
 
   return (
@@ -260,14 +267,14 @@ export default function CreateListing() {
            onChange={handleChange}
            value={formData.jobTitle}
          />
-         <textarea
-           placeholder="Job Description"
-           className="border p-4 rounded-lg focus:ring-2 focus:ring-blue-400"
-           id="jobDescription"
-           required
-           onChange={handleChange}
-           value={formData.jobDescription}
-         />
+      <textarea
+  placeholder="Job Description"
+  className="border p-4 rounded-lg focus:ring-2 focus:ring-blue-400"
+  id="description"  // Should match formData key
+  required
+  onChange={handleChange}
+  value={formData.description}
+/>
          <textarea
            placeholder="Skills Required"
            className="border p-4 rounded-lg focus:ring-2 focus:ring-blue-400"
