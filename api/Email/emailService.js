@@ -13,9 +13,11 @@ const transporter = nodemailer.createTransport({
 // Function to send the welcome email
 export const sendWelcomeEmail = (email, username) => {
     const mailOptions = {
-      from: 'nkestate.nk@gmail.com',
+      from: 'Jobhub@gmail.com',
       to: email,
+
      subject: 'Welcome to Our JobHub Platform!',
+
       html: `
       <html>
           <head>

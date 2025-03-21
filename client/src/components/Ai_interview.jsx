@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
@@ -29,16 +30,40 @@ const [percentage, setPercentage] = useState(0);
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
+  function speakWithFemaleVoice(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+  
+    const setVoice = () => {
+      const voices = speechSynthesis.getVoices();
+      const femaleVoice = voices.find(voice => voice.name.includes("Female") || voice.gender === "female");
+  
+      speech.voice = femaleVoice || voices[0]; // Use female voice or fallback
+      speechSynthesis.speak(speech);
+    };
+  
+    if (speechSynthesis.getVoices().length === 0) {
+      speechSynthesis.onvoiceschanged = setVoice;
+    } else {
+      setVoice();
+    }
+  }
+  
   async function fetchInterviewQuestions() {
     try {
-      const prompt = `Provide one easy interview question related to ${topic} in one line but question have to be random and question has to be tech.`;
+      const prompt = `Provide one easy interview question related to ${topic} in one line but question has to be random and tech-related.`;
       const result = await model.generateContent(prompt);
-      setResponse(result.response.text());
+      const question = result.response.text();
+      
+      setResponse(question);
+      speakWithFemaleVoice(question); // Call the function to speak
+  
     } catch (error) {
       console.error("Error fetching interview questions:", error);
       setResponse("Error fetching interview questions.");
     }
   }
+  
+  
 
   async function analyzeAnswer() {
     try {
@@ -194,8 +219,8 @@ const [percentage, setPercentage] = useState(0);
   return (
     <motion.div
     ref={backgroundRef}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
+    initial={{ opacity: 1 }}
+    animate={{ opacity: 10 }}
     className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-[#0F2027] via-[#203A43] to-[#2C5364] text-white px-6 py-20"
   >
     <motion.h1 className="text-5xl font-extrabold mb-6 text-white drop-shadow-lg tracking-wide">
@@ -301,3 +326,4 @@ const [percentage, setPercentage] = useState(0);
   </motion.div>
   );
 }
+

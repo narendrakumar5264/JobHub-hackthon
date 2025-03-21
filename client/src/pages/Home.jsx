@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import { IoFilter } from "react-icons/io5";
+
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
@@ -9,10 +9,13 @@ import ListingItem from '../components/ListingItem.jsx';
 import Header from '../components/Header.jsx';
 import background from '../assets/Companies.jpg';
 import about from '../assets/boy.jpg';
-import { FaUserFriends, FaHome } from "react-icons/fa";
+
 import { FiArrowRight } from "react-icons/fi";
 import yourGif from '../assets/gif.gif';
-import { FaBuilding } from "react-icons/fa";
+
+
+
+
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 import samsung   from '../assets/samsung.jpeg';
@@ -35,9 +38,9 @@ export default function Home() {
   const navigate = useNavigate();
 
 
-  const [visibleCompany, setvisibleCompany] = useState(4); // Show only 4 Company initially
+  const [visibleCompany, setvisibleCompany] = useState(4); 
 
-  // Function to toggle between "Show More" and "Show Less"
+  
   const handleShowMore = () => {
     if (visibleCompany === 4) {
       setvisibleCompany(showcompany.length); // Show all Company
@@ -125,7 +128,7 @@ const showcompany = [
     const value = e.target.value;
     setSearchTerm(value);
 
-    // Filter Company based on search term
+    
     if (value.length > 0) {
       const filteredCompanies = Company.filter((company) =>
         company.toLowerCase().includes(value.toLowerCase())
@@ -229,14 +232,15 @@ const showcompany = [
       </div>
 
       
-     <div className="relative py-20 bg-gradient-to-b from-white to-slate-50">
+      <div className="relative py-20 bg-gradient-to-b from-blue-800 to-black
+">
   <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-16">
     <div className="flex-1 space-y-6">
       <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
         Take an <span className="text-cyan-600">AI-Based</span> Interview with ease
       </h2>
       <p className="text-lg text-slate-600 leading-relaxed">
-        JobHub revolutionizes job searching with intelligent matching and seamless browsing.
+       JobHub revolutionizes job searching with intelligent matching and seamless browsing.
         Experience career opportunities reimagined through our curated collection of exceptional job listings.
       </p>
       <Link
@@ -266,8 +270,10 @@ const showcompany = [
 
 
       
-      <div className="bg-white">
-      <div className="max-w-7xl mx-auto p-6 bg-white">
+      <div className=" bg-gradient-to-b from-blue-600 via-blue-900 to-black
+">
+      <div className="max-w-7xl mx-auto p-6  bg-gradient-to-b from-blue-600 via-blue-900 to-black
+">
         <h2 className="text-4xl font-bold text-center text-slate-800 mb-10">
           Discover Job Opennings Across companies
         </h2>
@@ -315,7 +321,8 @@ const showcompany = [
     </div>
 
 
-    <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-16">
+    <section className="bg-gradient-to-b from-blue-600 via-blue-900 to-black
+py-16">
   <div className="max-w-7xl mx-auto px-4">
     <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
       <div className="md:w-3/5 p-8">
