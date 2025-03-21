@@ -119,7 +119,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button onClick={toggleMobileMenu} className="md:hidden text-gray-700 dark:text-gray-200">
+        <button onClick={toggleMobileMenu} className="md:hidden text-gray-700  dark:text-gray-200">
           <FaBars size={24} />
         </button>
       </div>
