@@ -413,16 +413,16 @@ const showcompany = [
   {rentListings && rentListings.length > 0 && (
     <div className="text-center">
       {/* Title */}
-      <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-wide">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-wide">
         🔥 Recent Job Openings
       </h2>
 
-      {/* Scrollable Job Listings */}
-      <div className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:flex-wrap mt-8 pb-4 scrollbar-hide">
+      {/* Job Listings Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {rentListings.slice(0, 3).map((listing) => (
           <div
             key={listing._id}
-            className="snap-center bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-72 sm:w-80 transition transform hover:scale-105 hover:shadow-2xl"
+            className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg transition transform hover:scale-105 hover:shadow-2xl"
           >
             {/* Job Image */}
             <div className="flex justify-center mb-4">
@@ -434,7 +434,7 @@ const showcompany = [
             </div>
 
             {/* Job Title */}
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white text-center">
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white text-center capitalize">
               {listing.jobTitle || "Job Title"}
             </h3>
 
@@ -468,17 +468,16 @@ const showcompany = [
         ))}
       </div>
 
-      {/* Browse More Companies Button */}
-      <div className="mt-6 flex justify-center">
-        <Link to={"/search?type=rent"}>
-          <button className="bg-gray-700 text-white text-sm font-medium px-5 py-2 md:px-6 md:py-3 rounded-md transition hover:bg-gray-800">
-            Browse More Companies →
-          </button>
-        </Link>
+      {/* Browse More Companies - Styled Button */}
+      <div className="mt-8 flex justify-center">
+        <button className="bg-gray-700 text-white text-sm font-medium px-6 py-3 rounded-md transition hover:bg-gray-800">
+          Browse More Companies →
+        </button>
       </div>
     </div>
   )}
 </div>
+
 
 
 <div className="max-w-6xl mx-auto mt-8 p-6 md:p-12 bg-[#F4E5D7] rounded-2xl shadow-xl">

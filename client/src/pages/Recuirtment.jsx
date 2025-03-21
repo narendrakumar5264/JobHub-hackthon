@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { FaUpload, FaCheckCircle } from "react-icons/fa";
 
 import DatePicker from "react-datepicker";
