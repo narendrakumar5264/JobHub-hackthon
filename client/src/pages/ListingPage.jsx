@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore from 'swiper';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css/bundle';
 import {
-  FaBath,
-  FaBed,
+  
   FaMapMarkerAlt,
   FaShare,
   FaStar,
@@ -57,6 +60,22 @@ export default function Listing() {
       {listing && !loading && !error && (
         <div className="container mx-auto px-6 py-4 md:py-9 md:m-3">
           <div className="relative">
+
+          
+              {listing.imageUrls.map((url) => (
+              
+                  <div
+                    className="h-[400px] md:h-[400px]  rounded-lg shadow-lg overflow-hidden transition-transform duration-700 
+                    ease-in-out transform hover:scale-105"
+                    style={{
+                      background: `url(${url}) center no-repeat`,
+                      backgroundSize: 'cover',
+                    }}
+                  ></div>
+              
+              ))}
+          
+            
             <div className="absolute top-5 right-5 z-10 border-2 rounded-full w-12 h-12 flex justify-center items-center bg-white cursor-pointer shadow-lg transition-all duration-300 ease-in-out hover:bg-gray-200">
               <FaShare
                 className="text-gray-600"
