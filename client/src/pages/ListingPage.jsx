@@ -72,21 +72,20 @@ export default function Listing() {
       </p>
     )}
     {listing && !loading && !error && (
-      <div className="w-full max-w-5xl bg-white dark:bg-gray-800 p-8 sm:p-10 rounded-xl shadow-lg flex flex-col md:flex-row gap-8 transition-transform duration-300 hover:scale-[1.02] border border-gray-200 dark:border-gray-700">
+      <div className="w-full max-w-6xl bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl flex relative transform transition-all duration-500 hover:scale-105 border border-gray-300 dark:border-gray-600"> 
         
         {/* Left Section - Image and Recruiter Info */}
-        <div className="md:w-1/3 flex flex-col items-center gap-6">
+        <div className="w-1/3 flex flex-col items-center gap-6 animate-slideInLeft">
           {listing.imageUrls.length > 0 && (
             <div className="w-full border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden shadow-md">
               <img src={listing.imageUrls[0]} alt="Company Logo" className="h-44 w-full object-cover" />
             </div>
           )}
           
-          <div className="w-full bg-gray-100 dark:bg-gray-700 p-6 rounded-lg border border-gray-300 dark:border-gray-600">
-            <p className="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">
-              Recruiter Information
-            </p>
-            <ul className="mt-4 text-gray-700 dark:text-gray-300 list-disc pl-6 space-y-2">
+          {/* Recruiter Information */}
+          <div className="w-full bg-gray-100 dark:bg-gray-700 p-6 rounded-lg border border-gray-400 dark:border-gray-600">
+            <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 text-center">Recruiter Information</p>
+            <ul className="mt-4 text-gray-600 dark:text-gray-300 list-disc pl-6 space-y-2">
               <li className="flex items-center">
                 <FaCheckCircle className="text-blue-600 text-lg mr-2" />
                 {listing.recruiterName}
@@ -96,22 +95,23 @@ export default function Listing() {
                 {listing.companyName}
               </li>
             </ul>
-            <div className="mt-6">
-              <Link to="/Recuirtment">
-                <button className="w-full bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-medium flex items-center justify-center hover:bg-blue-700 dark:hover:bg-blue-800 transition duration-300">
-                  <FaPhoneAlt className="mr-2" /> Apply Now
-                </button>
-              </Link>
+            <div className="mt-6 flex flex-col gap-4">
+              <button className="w-full bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-medium flex items-center justify-center hover:bg-blue-700 dark:hover:bg-blue-800 transition duration-300 animate-pulse">
+                <FaPhoneAlt className="mr-2" /> Contact Recruiter
+              </button>
+              <button className="w-full bg-green-600 dark:bg-green-700 text-white px-6 py-3 rounded-lg text-lg font-medium flex items-center justify-center hover:bg-green-700 dark:hover:bg-green-800 transition duration-300 animate-pulse">
+                <FaWhatsapp className="mr-2" /> Chat on WhatsApp
+              </button>
             </div>
           </div>
         </div>
         
         {/* Right Section - Job Details */}
-        <div className="md:w-2/3 space-y-5">
-          <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{listing.jobTitle}</p>
-          <p className="text-lg text-gray-600 dark:text-gray-300">{listing.companyName}</p>
-          <p className="text-lg text-gray-600 dark:text-gray-300">Salary: ₹{listing.salary} per annum</p>
-          <div className="flex items-center text-gray-600 dark:text-gray-300">
+        <div className="w-2/3 p-8 animate-slideInRight">
+          <p className="text-4xl font-bold text-gray-900 dark:text-gray-100 animate-fadeInUp">{listing.jobTitle}</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">{listing.companyName}</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">Salary: ₹{listing.salary} per annum</p>
+          <div className="flex mt-2 text-gray-600 dark:text-gray-300">
             <FaMapMarkerAlt className="text-green-700 text-lg mr-2" />
             {listing.address}, {listing.city}
           </div>
@@ -122,7 +122,7 @@ export default function Listing() {
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-gray-700 dark:text-gray-300">
             <li className="flex items-center">
               <FaUserTie className="text-blue-700 text-lg mr-2" />
-              {listing.experienceRequired} experience
+              {listing.experienceRequired} years experience
             </li>
             <li className="flex items-center">
               <FaBriefcase className="text-green-700 text-lg mr-2" />
@@ -130,7 +130,11 @@ export default function Listing() {
             </li>
             <li className="flex items-center">
               <FaClock className="text-red-700 text-lg mr-2" />
-              {listing.skillsRequired}
+              {listing.workingHours}
+            </li>
+            <li className="flex items-center">
+              <FaBuilding className="text-purple-700 text-lg mr-2" />
+              {listing.locationType}
             </li>
           </ul>
           
@@ -140,40 +144,9 @@ export default function Listing() {
               <span className="ml-2 text-gray-700 dark:text-gray-300">(4.5/5)</span>
             </div>
           </div>
-  
-          {/* Recruitment Process */}
-          <div className="mt-6 p-6 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-lg border border-gray-300 dark:border-gray-600">
-            <p className="text-2xl font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-              <FaClipboardList className="mr-2 text-blue-600" /> Recruitment Process
-            </p>
-            <ol className="mt-4 text-gray-700 dark:text-gray-300 list-decimal pl-6 space-y-3">
-              <li>
-                <strong>Online Application:</strong> Submit your resume and cover letter through our careers portal. Ensure your resume highlights relevant skills and experience.
-              </li>
-              <li>
-                <strong>Initial Screening:</strong> Shortlisted candidates will be contacted for a brief telephonic or virtual interview.
-              </li>
-              <li>
-                <strong>Technical Assessment:</strong> Candidates may be required to complete an online coding challenge or a problem-solving test.
-              </li>
-              <li>
-                <strong>Technical Interview:</strong> A detailed one-on-one or panel interview focusing on problem-solving and past projects.
-              </li>
-              <li>
-                <strong>HR Interview:</strong> A discussion on behavioral aspects, soft skills, and cultural fit.
-              </li>
-              <li>
-                <strong>Final Offer:</strong> Selected candidates will receive an official offer letter.
-              </li>
-              <li>
-                <strong>Onboarding & Training:</strong> Once the offer is accepted, candidates will go through an onboarding process.
-              </li>
-            </ol>
-          </div>
         </div>
       </div>
     )}
   </main>
-  
   );
 }
