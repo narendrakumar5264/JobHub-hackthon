@@ -26,7 +26,7 @@ const Recruitment = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [Email, setEmail] = useState("");
-
+  const [Name, setname] = useState("");
    const { theme } = useContext(ThemeContext);
 
   const handleChange = (e) => {
@@ -38,10 +38,13 @@ const Recruitment = () => {
       setFormData({ ...formData, [name]: value });
     }
     setEmail(formData.email);
+    setname(formData.name);
+
   };
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("10:00");
   const [scheduled, setScheduled] = useState(false);
+
 
   const sendEmail = () => {
     if (!Email) {
@@ -49,14 +52,19 @@ const Recruitment = () => {
       return;
     }
   
-    const templateParams = {
-      to_email: Email, // Ensure this matches EmailJS template variable
-      name: formData.name,
-      date: selectedDate.toDateString(),
-      time: selectedTime,
-    };
+    const formattedDate = selectedDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   
-    console.log("Template Params:", templateParams); // Debugging log
+    const templateParams = {
+      to_email: Email,
+      name: Name,
+      date: formattedDate, // Correctly formatted date
+      time: selectedTime, // Directly using selectedTime
+    };
   
     emailjs.send("service_7x0mze5", "template_qi8ox7n", templateParams, "K_rJDVkuNgJtSvkqF")
       .then((response) => {
