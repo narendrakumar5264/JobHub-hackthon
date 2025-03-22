@@ -409,45 +409,56 @@ const showcompany = [
     </div>
   )}
   </div> */}
-  <div className='max-w-1xl  md:mx-0 p-2 flex flex-col gap-4  md:grid ml-0 bg-[#205781]'>
+  <div className='max-w-8xl p-8 mx-auto bg-[#205781] rounded-lg shadow-lg'>
   {rentListings && rentListings.length > 0 && (
-    <div className='mx-5 md:mx-16 my-10 '>
-      <div className='my-2'>
-        <h2 className='text-3xl font-semibold text-black-600'>Recent  jobs</h2>
-        <Link className='text-sm text-black-500 hover:underline' to={'/search?type=rent'}>
-          Show more Companies for jobs
-        </Link>
+    <div className='mx-6 md:mx-12 my-8'>
+      <div className='mb-6 text-center'>
+        <h2 className='text-3xl font-bold text-white mb-2'>Recent Jobs</h2>
       </div>
-      <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap'>
+      <div className='flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap pb-6'>
         {rentListings.slice(0,3).map((listing) => (
-          <div key={listing._id} className='snap-center'>
+          <div key={listing._id} className='snap-center bg-white p-6 rounded-lg shadow-lg min-w-[280px] sm:min-w-[340px]'>
             <ListingItem listing={listing} />
           </div>
         ))}
       </div>
-    </div>
-  )}
-  </div>
-
-<div className='max-w-1xl  md:mx-0 p-2 flex flex-col gap-8  md:grid ml-0 bg-brown-300'>
-  {saleListings && saleListings.length > 0 && (
-    <div className=' mx-5 md:mx-16 my-10'>
-      <div className=''>
-        <h2 className='text-2xl font-semibold text-slate-600'>Latest Job Listingse</h2>
-        <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>
-        Find More Jobs
+      <div className='mt-6 flex justify-center'>
+        <Link 
+          className='px-5 py-2 bg-white text-[#205781] font-semibold rounded-lg shadow-md hover:bg-gray-100 transition' 
+          to={'/search?type=rent'}
+        >
+          Show More Companies for Jobs
         </Link>
       </div>
-      <div className='flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap'>
+    </div>
+  )}
+</div>
+
+<div className='max-w-8xl p-8 mx-auto bg-brown-300 rounded-lg shadow-lg mt-10'>
+  {saleListings && saleListings.length > 0 && (
+    <div className='mx-6 md:mx-12 my-8'>
+      <div className='mb-6 text-center'>
+        <h2 className='text-2xl font-semibold text-slate-700 mb-2'>Latest Job Listings</h2>
+      </div>
+      <div className='flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory sm:flex-wrap pb-6'>
         {saleListings.slice(0,3).map((listing) => (
-          <div key={listing._id} className='snap-center'>
+          <div key={listing._id} className='snap-center bg-white p-6 rounded-lg shadow-lg min-w-[280px] sm:min-w-[340px]'>
             <ListingItem listing={listing} />
           </div>
         ))}
       </div>
+      <div className='mt-6 flex justify-center'>
+        <Link 
+          className='px-5 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition' 
+          to={'/search?type=sale'}
+        >
+          Find More Jobs
+        </Link>
+      </div>
     </div>
   )}
-  </div>
+</div>
+
 
 
 
