@@ -6,6 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
+// import {sendEmail} from "../Email/emailService.js";
+import emailjs from "emailjs-com";
 const Recruitment = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -18,7 +20,7 @@ const Recruitment = () => {
   const [resumeName, setResumeName] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+  const [Email, setEmail] = useState("");
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -27,13 +29,40 @@ const Recruitment = () => {
     } else {
       setFormData({ ...formData, [name]: value });
     }
+    setEmail(formData.email);
   };
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("10:00");
   const [scheduled, setScheduled] = useState(false);
 
+  const sendEmail = () => {
+    if (!Email) {
+      console.error("Recipient email is missing!");
+      return;
+    }
+  
+    const templateParams = {
+      to_email: Email, // Ensure this matches EmailJS template variable
+      name: formData.name,
+      date: selectedDate.toDateString(),
+      time: selectedTime,
+    };
+  
+    console.log("Template Params:", templateParams); // Debugging log
+  
+    emailjs.send("service_7x0mze5", "template_qi8ox7n", templateParams, "K_rJDVkuNgJtSvkqF")
+      .then((response) => {
+        console.log("Email sent successfully!", response.status, response.text);
+      })
+      .catch((err) => {
+        console.error("Failed to send email.", err);
+      });
+  };
+  
   const handleSchedule = () => {
+    
     setScheduled(true);
+    sendEmail();
   };
 
   const validateForm = () => {
